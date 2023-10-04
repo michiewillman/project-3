@@ -1,7 +1,5 @@
 const jwt = require("jsonwebtoken");
 
-// Store the secret in .env
-// const secret = "mysecretssshhhhhhh";
 const secret = process.env.TOKEN_SECRET;
 const expiration = "2h";
 
@@ -21,17 +19,15 @@ module.exports = {
       return req;
     }
 
-    // if token can be verified, add the decoded user's data to the request so it can be accessed in the resolver
-    // if they are the same, extract the data (users info) to be used
+    // Verify token, send back to client as user context (if valid)
     try {
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
-      // this middleware is setting the (user) data as the context.user used in your resolvers
+
       req.user = data;
     } catch {
       console.log("Invalid token");
     }
 
-    // return the request object so it can be passed to the resolver as `context`
     return req;
   },
   signToken: function ({ email, name, _id }) {

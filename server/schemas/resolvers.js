@@ -4,23 +4,23 @@ const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
-    profiles: async () => {
-      return Profile.find();
+    patients: async () => {
+      return Patient.find();
     },
 
-    profile: async (parent, { profileId }) => {
-      return Profile.findOne({ _id: profileId });
+    patient: async (parent, { profileId }) => {
+      return Patient.findOne({ _id: profileId });
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return Profile.findOne({ _id: context.user._id });
+        return Patient.findOne({ _id: context.user._id });
       }
-      throw new AuthenticationError("You need to be logged in!");
+      throw new AuthenticationError("You must be logged in.");
     },
   },
 
   Mutation: {
-    addProfile: async (parent, { name, email, password }) => {
+    addPatient: async (parent, { name, email, password }) => {
       const profile = await Profile.create({ name, email, password });
       const token = signToken(profile);
 
@@ -43,7 +43,7 @@ const resolvers = {
       return { token, profile };
     },
 
-    addSkill: async (parent, { profileId, skill }, context) => {
+    addSymptom: async (parent, { profileId, skill }, context) => {
       if (context.user) {
         return Profile.findOneAndUpdate(
           { _id: profileId },
@@ -58,13 +58,13 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    removeProfile: async (parent, args, context) => {
+    removePatient: async (parent, args, context) => {
       if (context.user) {
         return Profile.findOneAndDelete({ _id: context.user._id });
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    removeSkill: async (parent, { skill }, context) => {
+    removeSymptom: async (parent, { skill }, context) => {
       if (context.user) {
         return Profile.findOneAndUpdate(
           { _id: context.user._id },
