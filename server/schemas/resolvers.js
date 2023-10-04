@@ -8,8 +8,8 @@ const resolvers = {
       return Patient.find();
     },
 
-    patient: async (parent, { profileId }) => {
-      return Patient.findOne({ _id: profileId });
+    patient: async (parent, { patientId }) => {
+      return Patient.findOne({ _id: patientId });
     },
     me: async (parent, args, context) => {
       if (context.user) {
@@ -21,10 +21,46 @@ const resolvers = {
 
   Mutation: {
     addPatient: async (parent, { name, email, password }) => {
-      const profile = await Profile.create({ name, email, password });
+      const patient = await Profile.create({ name, email, password });
       const token = signToken(profile);
 
       return { token, profile };
+    },
+    addMedication: async (parent, { patientId, skill }) => {
+      return Profile.findOneAndUpdate(
+        { _id: patientId },
+        {
+          $addToSet: { skills: skill },
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+    },
+    addSymptomToList: async (parent, { patientId, skill }) => {
+      return Profile.findOneAndUpdate(
+        { _id: patientId },
+        {
+          $addToSet: { skills: skill },
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+    },
+    addReportedSymptom: async (parent, { patientId, skill }) => {
+      return Profile.findOneAndUpdate(
+        { _id: patientId },
+        {
+          $addToSet: { skills: skill },
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
     },
     login: async (parent, { email, password }) => {
       const profile = await Profile.findOne({ email });
@@ -43,10 +79,10 @@ const resolvers = {
       return { token, profile };
     },
 
-    addSymptom: async (parent, { profileId, skill }, context) => {
+    addSymptom: async (parent, { patientId, skill }, context) => {
       if (context.user) {
         return Profile.findOneAndUpdate(
-          { _id: profileId },
+          { _id: patientId },
           {
             $addToSet: { skills: skill },
           },

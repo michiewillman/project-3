@@ -12,7 +12,7 @@ const typeDefs = gql`
     ocular: Boolean
     diagnosed date: Date
     medications: [String]
-    customSymptoms: [String]
+    avilableSymptoms: [String]
     reportedSymptoms: [String]
     diagnosedConditions: [String]
   }
@@ -32,6 +32,8 @@ const typeDefs = gql`
   }
 
   type Mutation {
+    createPatient(patient: PostData): patientResponse
+    createProvider}(provider: ProviderData): providerResponse
   }
 `;
 
