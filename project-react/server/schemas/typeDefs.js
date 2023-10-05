@@ -11,13 +11,14 @@ const typeDefs = gql`
     ocularMg: Boolean
     diagnosedDate: Date
     medications: [String]
-    avilableSymptoms: [String]
+    availableSymptoms: [String]
     reportedSymptoms: [String]
     conditions: [String]
   }
 
   type Provider {
     firstName: String!
+    lastName: String!
     email: String!
     password: String!
   }
@@ -28,13 +29,21 @@ const typeDefs = gql`
   }
 
   input PatientData {
-    firstName: String
-    lastName: String
+    firstName: String!
+    lastName: String!
     email: String!
-    password: String
-    date of birth: Date
-    generalized: Boolean
-    ocular: Boolean
+    password: String!
+    dob: Date!
+    generalizedMg: Boolean
+    ocularMg: Boolean
+    diagnosedDate: Date
+  }
+
+  input ProviderData {
+    firstName: String!
+    lastName: String!
+    email: String!
+    password: String!
   }
 
   type Query {
