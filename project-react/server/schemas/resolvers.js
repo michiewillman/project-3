@@ -9,7 +9,7 @@ const resolvers = {
       return Patient.find();
     },
     // One patient
-    patient: async (parent, { patientId }) => {
+    patient: async (parent, { name, lastname, }) => {
       return Patient.findOne({ _id: patientId });
     },
     // Patient accessing their own data

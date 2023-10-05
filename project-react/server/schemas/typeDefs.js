@@ -7,14 +7,14 @@ const typeDefs = gql`
     username: String!
     email: String!
     password: String!
-    date of birth: Date!
+    dob: Date!
     generalized: Boolean
     ocular: Boolean
-    diagnosed date: Date
+    diagnosedDate: Date
     medications: [String]
     avilableSymptoms: [String]
     reportedSymptoms: [String]
-    diagnosedConditions: [String]
+    conditions: [String]
   }
 
   type Provider {
