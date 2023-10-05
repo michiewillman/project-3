@@ -4,33 +4,35 @@ const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
+    // All patients
     patients: async () => {
       return Patient.find();
     },
-
+    // One patient
     patient: async (parent, { patientId }) => {
       return Patient.findOne({ _id: patientId });
     },
+    // Patient accessing their own data
     me: async (parent, args, context) => {
       if (context.user) {
         return Patient.findOne({ _id: context.user._id });
       }
-      throw new AuthenticationError("You must be logged in.");
+      throw new AuthenticationError("Log in or create an account.");
     },
   },
 
   Mutation: {
-    addPatient: async (parent, { name, email, password }) => {
-      const patient = await Profile.create({ name, email, password });
-      const token = signToken(profile);
+    addPatient: async (parent, PatientData) => {
+      const patient = await Patient.create(PatientData);
+      const token = signToken(patient);
 
-      return { token, profile };
+      return { token, patient };
     },
-    addMedication: async (parent, { patientId, skill }) => {
-      return Profile.findOneAndUpdate(
+    addMedication: async (parent, { patientId, medication }) => {
+      return Patient.findOneAndUpdate(
         { _id: patientId },
         {
-          $addToSet: { skills: skill },
+          $addToSet: { medications: medication },
         },
         {
           new: true,
@@ -39,7 +41,7 @@ const resolvers = {
       );
     },
     addSymptomToList: async (parent, { patientId, skill }) => {
-      return Profile.findOneAndUpdate(
+      return Patient.findOneAndUpdate(
         { _id: patientId },
         {
           $addToSet: { skills: skill },
@@ -51,10 +53,10 @@ const resolvers = {
       );
     },
     addReportedSymptom: async (parent, { patientId, skill }) => {
-      return Profile.findOneAndUpdate(
+      return Patient.findOneAndUpdate(
         { _id: patientId },
         {
-          $addToSet: { skills: skill },
+          $addToSet: { reportedSymptoms: symptom },
         },
         {
           new: true,
@@ -62,10 +64,10 @@ const resolvers = {
         }
       );
     },
-    login: async (parent, { email, password }) => {
-      const profile = await Profile.findOne({ email });
+    patientLogin: async (parent, { email, password }) => {
+      const patient = await Profile.findOne({ email });
 
-      if (!profile) {
+      if (!patient) {
         throw new AuthenticationError("No profile with this email found!");
       }
 
@@ -100,7 +102,17 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    removeSymptom: async (parent, { skill }, context) => {
+    removeSymptom: async (parent, { symptom }, context) => {
+      if (context.user) {
+        return Profile.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { skills: skill } },
+          { new: true }
+        );
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    removeMedication: async (parent, { medication }, context) => {
       if (context.user) {
         return Profile.findOneAndUpdate(
           { _id: context.user._id },
