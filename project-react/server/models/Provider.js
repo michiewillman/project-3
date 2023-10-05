@@ -22,7 +22,7 @@ const providerSchema = new Schema({
     type: String,
     required: true,
   },
-  // All patients belonging to the Provider
+  // All patients claimed by the Provider
   patients: [
     {
       type: String,
