@@ -4,12 +4,11 @@ const typeDefs = gql`
   type Patient {
     firstName: String!
     lastName: String!
-    username: String!
     email: String!
     password: String!
     dob: Date!
-    generalized: Boolean
-    ocular: Boolean
+    generalizedMg: Boolean
+    ocularMg: Boolean
     diagnosedDate: Date
     medications: [String]
     avilableSymptoms: [String]
@@ -29,12 +28,11 @@ const typeDefs = gql`
   }
 
   input PatientData {
-    firstName: String!
-    lastName: String!
-    username: String!
+    firstName: String
+    lastName: String
     email: String!
-    password: String!
-    date of birth: Date!
+    password: String
+    date of birth: Date
     generalized: Boolean
     ocular: Boolean
   }
