@@ -13,7 +13,7 @@ const medicationSchema = new Schema({
     type: Number,
     required: true,
   },
-  entries: {
+  logs: {
     type: String,
   },
 });

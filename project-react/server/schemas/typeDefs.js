@@ -27,6 +27,13 @@ const typeDefs = gql`
     patients: [Patient]
   }
 
+  type Medication {
+    name: String
+    dosage: String
+    patientId: ID!
+    logs: [String]
+  }
+
   type Auth {
     token: ID!
     profile: Profile
