@@ -9,7 +9,6 @@ const typeDefs = gql`
     dob: Date!
     generalizedMg: Boolean
     ocularMg: Boolean
-    diagnosedDate: Date
     medications: [String]
     availableSymptoms: [String]
     reportedSymptoms: [String]
@@ -36,7 +35,6 @@ const typeDefs = gql`
     dob: Date!
     generalizedMg: Boolean
     ocularMg: Boolean
-    diagnosedDate: Date
   }
 
   input ProviderData {
