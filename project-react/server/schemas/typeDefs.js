@@ -19,8 +19,11 @@ const typeDefs = gql`
   type Provider {
     firstName: String!
     lastName: String!
-    email: String!
-    password: String!
+    email: String
+    password: String
+    city: String
+    state: String
+    practice: String
     patients: [Patient]
   }
 
