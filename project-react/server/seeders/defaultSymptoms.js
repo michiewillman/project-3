@@ -1,13 +1,18 @@
 const defaultSymptoms = [
+  "Shortness of breath",
   "Difficulty swallowing",
   "Difficulty chewing",
-  "Difficulty talking",
-  "Shortness of breath",
+  "Impaired speech",
   "Droopy eyelid(s)",
   "Eye/eyelid movement",
   "Blurred vision",
   "Double vision",
   "Muscle weakness",
+  // Arms
+  // Hands and/or Fingers
+  // Legs
+  // Neck
+  // Other
   "General fatigue",
   "Facial expressions",
 ];
