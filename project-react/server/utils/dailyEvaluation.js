@@ -1,4 +1,4 @@
-const defaultSymptoms = [
+const symptomList = [
   "Shortness of breath",
   "Difficulty swallowing",
   "Difficulty chewing",
@@ -20,6 +20,8 @@ const defaultSymptoms = [
   // Show additional input for custom symptom that gets added to that patient's availableSymptoms array
 ];
 
+const symptomLevel = ["None", "Slight", "Fair", "Bad", "Extreme"];
+
 const mentalState = [
   "Happy",
   "Hopeful",
@@ -36,4 +38,9 @@ const mentalState = [
 
 // ALERT with suicidal thoughts response
 
-const symptomLevel = ["None", "Slight", "Fair", "Bad", "Extreme"];
+export const dailyEvaluation = [
+  {
+    question: "",
+    options: symptomList,
+  },
+];
