@@ -1,9 +1,13 @@
 const { Schema, model } = require("mongoose");
 
 // Symptoms reported in one day evaluation
-const daySchema = new Schema({
+const dailyEvalSchema = new Schema({
   date: {
     type: Date,
+    required: true,
+  },
+  userId: {
+    type: Int,
     required: true,
   },
   mentalState: {

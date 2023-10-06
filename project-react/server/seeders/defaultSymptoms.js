@@ -15,6 +15,9 @@ const defaultSymptoms = [
   // Other
   "General fatigue",
   "Facial expressions",
+  "None",
+  "Other",
+  // Show additional input for custom symptom that gets added to that patient's availableSymptoms array
 ];
 
 const mentalState = [
