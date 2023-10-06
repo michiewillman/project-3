@@ -7,6 +7,7 @@ const typeDefs = gql`
     email: String!
     password: String!
     dob: Date!
+    providerId: ProviderID
     generalizedMg: Boolean
     ocularMg: Boolean
     medications: [String]
@@ -20,6 +21,7 @@ const typeDefs = gql`
     lastName: String!
     email: String!
     password: String!
+    patients: [Patient]
   }
 
   type Auth {

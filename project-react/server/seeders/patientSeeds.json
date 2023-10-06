@@ -4,12 +4,12 @@
     "lastName": "Kernighan",
     "email": "bkernighan@techfriends.dev",
     "password": "password01",
-    "dob": ,
+    "dob": 10011991,
     "generalizedMg": true,
     "ocularMG": false,
-    "diagnosedDate": ,
-    "medications":,
-    "availableSymptoms":["Droopy eyelid(s)", "Muscle weakness", "General fatigue", "Difficulty swallowing", "Chewing", "Talking", "Blurred vision", "Double vision", "Shortness of breath", "Impaired speech"],
+    "provider": "Karen Osborne",
+    "medications": ["prednisone", "mestinon", "iron"],
+    "customSymptoms": "",
     "reportedSymptoms": ["Droopy eyelid(s)", "General fatigue"]
   }
 ]
