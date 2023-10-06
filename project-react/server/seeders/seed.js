@@ -1,15 +1,14 @@
-const db = require('../config/connection');
-const { Profile } = require('../models');
-const profileSeeds = require('./profileSeeds.json');
+const db = require("../config/connection");
+const { Patient } = require("../models");
+const patientSeeds = require("./patientSeeds.json");
 
-db.once('open', async () => {
+db.once("open", async () => {
   try {
-    await Profile.deleteMany({});
-    await Profile.create(profileSeeds);
+    await Patient.deleteMany({});
+    await Patient.create(patientSeeds);
 
-    console.log('all done!');
     process.exit(0);
-  } catch (err) {
-    throw err;
+  } catch (error) {
+    throw error;
   }
 });
