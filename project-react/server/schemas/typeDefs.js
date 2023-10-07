@@ -41,13 +41,6 @@ const typeDefs = gql`
     ocularMg: Boolean
   }
 
-  input ProviderData {
-    firstName: String!
-    lastName: String!
-    email: String!
-    password: String!
-  }
-
   type Query {
     patients: [Patient]
     patient(patientId: ID!): Patient
