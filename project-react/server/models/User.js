@@ -1,6 +1,7 @@
 const { Schema, model } = require("mongoose");
 // import models
-const Medication = require("./Book");
+const MedicationLog = require("./MedicationLog");
+const SymptomLog = require("./SymptomLog");
 
 const userSchema = new Schema({
   firstName: {
@@ -25,9 +26,9 @@ const userSchema = new Schema({
     required: true,
   },
   // User's current medications
-  medications: [Medication],
+  medications: [MedicationLog],
   // All symptoms available in the user's symptom checklist
-  symptoms: [Symptom],
+  symptoms: [SymptomLog],
 });
 
 // Export the Patient object made from the schema

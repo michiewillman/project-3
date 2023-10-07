@@ -21,6 +21,6 @@ const medicationLogSchema = new Schema({
   },
 });
 
-const Medication = model("Medication", medicationLogSchema);
+const MedicationLog = model("Medication", medicationLogSchema);
 
-module.exports = Medication;
+module.exports = MedicationLog;
