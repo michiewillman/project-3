@@ -24,42 +24,13 @@ const userSchema = new Schema({
     type: Date,
     required: true,
   },
-
-  // Future Development: Does the patient have generalized MG?
-  // generalizedMg: {
-  //   type: Boolean,
-  //   required: true,
-  // },
-  // // Does the patient have ocular MG?
-  // ocularMg: {
-  //   type: Boolean,
-  //   required: true,
-  // },
-
-  // List of patient's current medications - update when patient adds new medication or removes mediation
-  medications: [
-    {
-      type: String,
-      trim: true,
-    },
-  ],
-  // All items in the symptom checklist - patient can add custom
-  symptoms: [
-    {
-      type: String,
-      trim: true,
-    },
-  ],
-  // Future Development: All symptoms the patient has reported experiencing (for research purposes)
-  // reportedSymptoms: [
-  //   {
-  //     type: String,
-  //     trim: true,
-  //   },
-  // ],
+  // User's current medications
+  medications: [Medication],
+  // All symptoms available in the user's symptom checklist
+  symptoms: [Symptom],
 });
 
 // Export the Patient object made from the schema
-const Patient = model("Patient", userSchema);
+const User = model("User", userSchema);
 
-module.exports = Patient;
+module.exports = User;
