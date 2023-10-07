@@ -20,12 +20,12 @@ const resolvers = {
       throw new AuthenticationError("Log in or create an account.");
     },
     // ---  Logged in User's Symptoms ---
-    symptoms: async (parent, { userId, currentDate }) => {
-      return SymptomLog.findOne({ _id: userId }).populate("medications");
+    symptomLogs: async (parent, { userId, currentDate }) => {
+      return SymptomLog.findOne({ _id: userId, date: currentDate });
     },
-    // ---  Logged in User's Medications ---
-    medications: async (parent, { patientId, currentDate }) => {
-      return MedicationLog.findOne({ _id: patientId }).populate("medications");
+    // ---  Logged in User's Medications for a specific day ---
+    medicationLogs: async (parent, { patientId, currentTime }) => {
+      return MedicationLog.findOne({ _id: patientId, date: currentTime });
     },
   },
 
@@ -36,11 +36,23 @@ const resolvers = {
 
       return { token, user };
     },
-    removeUser: async (parent, args, context) => {
-      if (context.user) {
-        return User.findOneAndDelete({ _id: context.user._id });
+    userLogin: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        throw new AuthenticationError("No profile with this email found!");
       }
-      throw new AuthenticationError("You need to be logged in!");
+
+      // Verify the user entered the right password
+      const correctPass = await user.isCorrectPassword(password);
+
+      if (!correctPass) {
+        throw new AuthenticationError("Incorrect password!");
+      }
+
+      // Sign + send token if the user's password is correct w/ that user's data
+      const token = signToken(user);
+      return { token, user };
     },
     // Add symptom to User's symptoms property
     addUserSymptom: async (parent, { userId, symptom }) => {
@@ -96,24 +108,7 @@ const resolvers = {
 
       throw new AuthenticationError("Please log in or sign up.");
     },
-    userLogin: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
-
-      if (!user) {
-        throw new AuthenticationError("No profile with this email found!");
-      }
-
-      // Verify the user entered the right password
-      const correctPass = await user.isCorrectPassword(password);
-
-      if (!correctPass) {
-        throw new AuthenticationError("Incorrect password!");
-      }
-
-      // Sign + send token if the user's password is correct w/ that user's data
-      const token = signToken(user);
-      return { token, user };
-    },
+    // Symptom Logs for a specific user
     logSymptom: async (parent, { userId, date, symptomName, severity }) => {
       return SymptomLog.create({
         userId,
@@ -122,7 +117,10 @@ const resolvers = {
         severity,
       });
     },
-    // --- Medications ---
+    deleteSymptomLog: async (parent, { logId }) => {
+      return SymptomLog.findOneAndDelete({ _id: logId });
+    },
+    // Medication logs for a specific user
     logMedication: async (
       parent,
       { userId, timestamp, medicationName, dosage }
@@ -133,6 +131,9 @@ const resolvers = {
         medicationName,
         dosage,
       });
+    },
+    deleteMedicationLog: async (parent, { logId }) => {
+      return MedicationLog.findOneAndDelete({ _id: logId });
     },
   },
 };
