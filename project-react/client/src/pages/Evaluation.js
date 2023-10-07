@@ -49,16 +49,12 @@ const defaultSymptoms = [
   },
 ];
 
-// DANGER alert with difficuly swallowing, chewing or shortness of breath responses
-
-// GIVE Encouragement with depressed response
-
-// ALERT with suicidal thoughts response
-
 // for each symptom in the defaultSymptoms, render a title with the name of the symptom, and a scale below it allowing the user to input their answers
 
+// Symptom onPress --> toggles hiding/showing severity scale (use Switch component)
 // event listener on all scale input divs
-// if user chooses anything other than 0, it gets logged with the current date, as a SymptomLog
+// If severity scale div is hidden or user chooses 0, skip and go to next symptom
+// If user chooses anything other than 0 on scale, it gets logged with the current date, as a SymptomLog
 // set symptomName as event target's symptom string
 // set severity as even target's input value
 
