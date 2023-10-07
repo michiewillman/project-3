@@ -115,11 +115,24 @@ const resolvers = {
       return { token, user };
     },
     logSymptom: async (parent, { userId, date, symptomName, severity }) => {
-      return SymptomLog.create({ userId, date, symptomName, severity });
+      return SymptomLog.create({
+        userId,
+        date,
+        symptomName,
+        severity,
+      });
     },
     // --- Medications ---
-    logMedication: async (parent, { userId, date, symptomName, severity }) => {
-      return SymptomLog.create({ userId, date, symptomName, severity });
+    logMedication: async (
+      parent,
+      { userId, timestamp, medicationName, dosage }
+    ) => {
+      return MedicationLog.create({
+        userId,
+        timestamp,
+        medicationName,
+        dosage,
+      });
     },
   },
 };

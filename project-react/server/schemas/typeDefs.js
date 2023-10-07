@@ -12,14 +12,14 @@ const typeDefs = gql`
   }
 
   type MedicationLog {
-    patientId: ID!
+    userId: ID!
     timestamp: Date
     medicationName: String!
     dosage: String
   }
 
   type SymptomLog {
-    patientId: Patient
+    userId: Patient
     date: Date
     symptomName: String!
     severity: Int
