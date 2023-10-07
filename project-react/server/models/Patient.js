@@ -32,11 +32,6 @@ const patientSchema = new Schema({
     type: Boolean,
     required: true,
   },
-  // Date of MG diagnosis (optional)
-  diagnosedDate: {
-    type: Date,
-    required: true,
-  },
   // List of patient's current medications
   medications: [
     {
@@ -53,13 +48,6 @@ const patientSchema = new Schema({
   ],
   // All symptoms the patient has reported experiencing
   reportedSymptoms: [
-    {
-      type: String,
-      trim: true,
-    },
-  ],
-  // Patient's known medical conditions other than MG
-  conditions: [
     {
       type: String,
       trim: true,
