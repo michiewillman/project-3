@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
-
-// TODO: Not sure if this needs to be a model or not
+// Import date formatting middleware
+const formatDate = require("../utils/formatDate");
 
 // Medication logs for each Patient with a timestamp of when they took the medication
 const medicationLogSchema = new Schema({
@@ -8,15 +8,19 @@ const medicationLogSchema = new Schema({
     type: Number,
     required: true,
   },
+  timestamp: {
+    type: Date,
+    default: Date.now,
+    get: (timestamp) => formatDate(timestamp),
+  },
   medicationName: {
     type: String,
   },
   dosage: {
     type: String,
   },
-  timestamp: {
-    type: String,
-  },
 });
 
-module.exports = medicationLogSchema;
+const Medication = model("Medication", medicationLogSchema);
+
+module.exports = Medication;

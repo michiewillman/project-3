@@ -7,24 +7,8 @@ const typeDefs = gql`
     email: String!
     password: String!
     dob: Date!
-    providerId: ProviderID
-    generalizedMg: Boolean
-    ocularMg: Boolean
-    medications: [String]
-    availableSymptoms: [String]
-    reportedSymptoms: [String]
-    conditions: [String]
-  }
-
-  type Provider {
-    firstName: String!
-    lastName: String!
-    email: String
-    password: String
-    city: String
-    state: String
-    practice: String
-    patients: [Patient]
+    medications: [Medication]
+    symptoms: [Symptom]
   }
 
   type Medication {
@@ -32,6 +16,11 @@ const typeDefs = gql`
     dosage: String
     patientId: ID!
     logs: [String]
+  }
+
+  type Symptom {
+    symptomName: String
+    patientId: Patient
   }
 
   type Auth {
@@ -60,6 +49,8 @@ const typeDefs = gql`
   type Query {
     patients: [Patient]
     patient(patientId: ID!): Patient
+    medications: [Medication]
+    symptoms: [Symptom]
   }
 
   type Mutation {

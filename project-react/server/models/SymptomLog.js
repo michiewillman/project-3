@@ -1,4 +1,6 @@
 const { Schema, model } = require("mongoose");
+// Import date formatting middleware
+const formatDate = require("../utils/formatDate");
 
 // TODO: Not sure if this needs to be a model or not
 
@@ -10,6 +12,8 @@ const symptomLogSchema = new Schema({
   },
   date: {
     type: Date,
+    default: Date.now,
+    get: (timestamp) => formatDate(timestamp),
   },
   symptomName: {
     type: String,
@@ -19,4 +23,6 @@ const symptomLogSchema = new Schema({
   },
 });
 
-module.exports = symptomLogSchema;
+const Symptom = model("Symptom", symptomLogSchema);
+
+module.exports = Symptom;

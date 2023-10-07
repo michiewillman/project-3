@@ -1,6 +1,8 @@
 const { Schema, model } = require("mongoose");
+// import models
+const Medication = require('./Book');
 
-const patientSchema = new Schema({
+const userSchema = new Schema({
   firstName: {
     type: String,
     required: true,
@@ -22,25 +24,27 @@ const patientSchema = new Schema({
     type: Date,
     required: true,
   },
-  // Does the patient have generalized MG?
-  generalizedMg: {
-    type: Boolean,
-    required: true,
-  },
-  // Does the patient have ocular MG?
-  ocularMg: {
-    type: Boolean,
-    required: true,
-  },
-  // List of patient's current medications
+
+  // Future Development: Does the patient have generalized MG?
+  // generalizedMg: {
+  //   type: Boolean,
+  //   required: true,
+  // },
+  // // Does the patient have ocular MG?
+  // ocularMg: {
+  //   type: Boolean,
+  //   required: true,
+  // },
+
+  // List of patient's current medications - update when patient adds new medication or removes mediation
   medications: [
     {
       type: String,
       trim: true,
     },
   ],
-  // All items in the symptom checklist
-  availableSymptoms: [
+  // All items in the symptom checklist - patient can add custom
+  symptoms: [
     {
       type: String,
       trim: true,
@@ -62,6 +66,6 @@ const patientSchema = new Schema({
 });
 
 // Export the Patient object made from the schema
-const Patient = model("Patient", patientSchema);
+const Patient = model("Patient", userSchema);
 
 module.exports = Patient;

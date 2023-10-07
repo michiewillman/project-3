@@ -23,6 +23,7 @@ const resolvers = {
     // ---  Symptoms ---
 
     // ---  Medications ---
+    
   },
 
   Mutation: {
@@ -104,6 +105,7 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+    // --- Medications ---
     addMedication: async (parent, { patientId, medication }) => {
       return Medication.findOneAndUpdate(
         { _id: patientId },
