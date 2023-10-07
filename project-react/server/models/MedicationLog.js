@@ -15,6 +15,7 @@ const medicationLogSchema = new Schema({
   },
   medicationName: {
     type: String,
+    required: true,
   },
   dosage: {
     type: String,
