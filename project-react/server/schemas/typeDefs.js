@@ -12,15 +12,17 @@ const typeDefs = gql`
   }
 
   type Medication {
-    name: String
-    dosage: String
     patientId: ID!
-    logs: [String]
+    timestamp: Date
+    medicationName: String!
+    dosage: String
   }
 
   type Symptom {
-    symptomName: String
     patientId: Patient
+    date: Date
+    symptomName: String
+    severity: Int
   }
 
   type Auth {
