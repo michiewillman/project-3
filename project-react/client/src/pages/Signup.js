@@ -46,9 +46,7 @@ const Signup = () => {
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
         <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">
-            Create An Account
-          </h4>
+          <h4 className="">Create An Account</h4>
           <div className="card-body">
             {data ? (
               <Home />
@@ -78,8 +76,16 @@ const Signup = () => {
                   value={formState.password}
                   onChange={handleInputChange}
                 />
+                <input
+                  className="form-input"
+                  placeholder="DD/MM/YYYY"
+                  name="dob"
+                  type="dob"
+                  value={formState.dob}
+                  onChange={handleInputChange}
+                />
                 <button
-                  className="btn btn-block btn-info"
+                  className=""
                   style={{ cursor: "pointer" }}
                   type="submit"
                 >
@@ -88,11 +94,7 @@ const Signup = () => {
               </form>
             )}
 
-            {error && (
-              <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
-              </div>
-            )}
+            {error && <div className="">{error.message}</div>}
           </div>
         </div>
       </div>
