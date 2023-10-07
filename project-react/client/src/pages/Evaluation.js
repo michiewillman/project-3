@@ -1,5 +1,4 @@
-const symptomSeverityScale = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const mentalStateScale = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+import SingleSymptom from "../components/SingleSymptom/SingleSymptom";
 
 // Symptoms automatically loaded into user choices
 const defaultSymptoms = [

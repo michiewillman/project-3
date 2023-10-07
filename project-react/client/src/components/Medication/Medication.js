@@ -35,6 +35,7 @@ export default Medication = (userId) => {
 
   return;
   //  use flatlist for logs?
+  //  Animated.sequence(log cards)
 
   // hidden input value = the medication log's id (in order to pass that in to remove medication by this id)
 

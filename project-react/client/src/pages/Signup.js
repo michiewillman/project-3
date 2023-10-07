@@ -1,20 +1,25 @@
 import React, { useState } from "react";
-import { useMutation } from "@apollo/client";
-import { ADD_PROFILE } from "../utils/mutations";
 import { Link } from "react-router-dom";
-
+// Hook from Apollo Client to use mutations
+import { useMutation } from "@apollo/client";
+// GraphQL mutation
+import { ADD_USER } from "../../utils/mutations";
+// User authentication middleware
 import Auth from "../utils/auth";
+import Home from "./Home";
 
 const Signup = () => {
   const [formState, setFormState] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
+    dob: "",
   });
-  const [addProfile, { error, data }] = useMutation(ADD_PROFILE);
+  const [addUser, { error, data }] = useMutation(ADD_USER);
 
-  // update state based on form input changes
-  const handleChange = (event) => {
+  // Update the state of the input when user types
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
 
     setFormState({
@@ -23,19 +28,17 @@ const Signup = () => {
     });
   };
 
-  // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
 
     try {
-      const { data } = await addProfile({
+      const { data } = await addUser({
         variables: { ...formState },
       });
 
-      Auth.login(data.addProfile.token);
-    } catch (e) {
-      console.error(e);
+      Auth.login(data.addUser.token);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -43,30 +46,29 @@ const Signup = () => {
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
         <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
+          <h4 className="card-header bg-dark text-light p-2">
+            Create An Account
+          </h4>
           <div className="card-body">
             {data ? (
-              <p>
-                Success! You may now head{" "}
-                <Link to="/">back to the homepage.</Link>
-              </p>
+              <Home />
             ) : (
               <form onSubmit={handleFormSubmit}>
                 <input
                   className="form-input"
-                  placeholder="Your username"
+                  placeholder="Choose a username"
                   name="name"
                   type="text"
                   value={formState.name}
-                  onChange={handleChange}
+                  onChange={handleInputChange}
                 />
                 <input
                   className="form-input"
-                  placeholder="Your email"
+                  placeholder="Enter your email"
                   name="email"
                   type="email"
                   value={formState.email}
-                  onChange={handleChange}
+                  onChange={handleInputChange}
                 />
                 <input
                   className="form-input"
@@ -74,7 +76,7 @@ const Signup = () => {
                   name="password"
                   type="password"
                   value={formState.password}
-                  onChange={handleChange}
+                  onChange={handleInputChange}
                 />
                 <button
                   className="btn btn-block btn-info"

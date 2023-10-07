@@ -1,25 +1,16 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import ProfileList from "../components/ProfileList";
-import { QUERY_PROFILES } from "../utils/queries";
+import Day from "../components/Day";
+import { QUERY_ME } from "../utils/queries";
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_PROFILES);
-  const profiles = data?.profiles || [];
+  const { loading, data } = useQuery(QUERY_ME);
+  const user = data?.user || [];
 
   return (
     <main>
       <div className="">
-        <div className="">
-          {loading ? (
-            <div>Loading...</div>
-          ) : (
-            <ProfileList
-              profiles={profiles}
-              title="Here's the current roster of friends..."
-            />
-          )}
-        </div>
+        <div className="">{loading ? <div>Loading...</div> : <Day />}</div>
       </div>
     </main>
   );
