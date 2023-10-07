@@ -36,7 +36,8 @@ const typeDefs = gql`
 
   type Auth {
     token: ID!
-    profile: Profile
+    patient: Patient
+    provider: Provider
   }
 
   input PatientData {
@@ -57,6 +58,8 @@ const typeDefs = gql`
   }
 
   type Query {
+    patients: [Patient]
+    patient(patientId: ID!): Patient
   }
 
   type Mutation {

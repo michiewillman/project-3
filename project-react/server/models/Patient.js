@@ -65,6 +65,12 @@ const patientSchema = new Schema({
       trim: true,
     },
   ],
+  logs: [
+    {
+      type: String,
+      trim: true,
+    },
+  ],
 });
 
 // Export the Patient object made from the schema
