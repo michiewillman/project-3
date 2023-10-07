@@ -1,7 +1,4 @@
 const { Schema, model } = require("mongoose");
-// import models
-const MedicationLog = require("./MedicationLog");
-const SymptomLog = require("./SymptomLog");
 
 const userSchema = new Schema({
   firstName: {
@@ -26,10 +23,35 @@ const userSchema = new Schema({
     required: true,
   },
   // User's current medications
-  medications: [MedicationLog],
+  medications: [
+    {
+      type: String,
+      trim: true,
+    },
+  ],
   // All symptoms available in the user's symptom checklist
-  symptoms: [SymptomLog],
+  symptoms: [
+    {
+      type: String,
+      trim: true,
+    },
+  ],
 });
+
+// Hash the user's password for encryption
+userSchema.pre("save", async function (next) {
+  if (this.isNew || this.isModified("password")) {
+    const saltRounds = 10;
+    this.password = await bcrypt.hash(this.password, saltRounds);
+  }
+
+  next();
+});
+
+// Compare & validate password for user log in
+userSchema.methods.isCorrectPassword = async function (password) {
+  return bcrypt.compare(password, this.password);
+};
 
 // Export the Patient object made from the schema
 const User = model("User", userSchema);

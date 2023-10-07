@@ -11,24 +11,23 @@ const typeDefs = gql`
     symptoms: [Symptom]
   }
 
-  type Medication {
+  type MedicationLog {
     patientId: ID!
     timestamp: Date
     medicationName: String!
     dosage: String
   }
 
-  type Symptom {
+  type SymptomLog {
     patientId: Patient
     date: Date
-    symptomName: String
+    symptomName: String!
     severity: Int
   }
 
   type Auth {
     token: ID!
     patient: Patient
-    provider: Provider
   }
 
   input UserData {
@@ -37,15 +36,14 @@ const typeDefs = gql`
     email: String!
     password: String!
     dob: Date!
-    generalizedMg: Boolean
-    ocularMg: Boolean
+    symptoms: [Symptom]
   }
 
   type Query {
     users: [User]
     user(userId: ID!): User
-    medications: [Medication]
-    symptoms: [Symptom]
+    medications: [MedicationLog]
+    symptoms: [SymptomLog]
   }
 
   type Mutation {
