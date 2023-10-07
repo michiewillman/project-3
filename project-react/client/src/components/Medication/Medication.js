@@ -21,6 +21,8 @@ export default Medication = (patientId) => {
   };
 
   return;
+  // hidden input value = the medication log's id (in order to pass that in to remove medication by this id)
+
   // Render all logged medication entries for current date
   // {medication} taken at {time}
 

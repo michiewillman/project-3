@@ -1,49 +1,53 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { Patient, Provider } = require("../models");
+const { User, SymptomLog, MedicationLog } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
-    // ---  Patients ---
-    // All Patients
-    patients: async () => {
-      return Patient.find();
+    // All Users
+    users: async () => {
+      return User.find();
     },
-    // One Patient
-    patient: async (parent, { patientId }) => {
-      return Patient.findOne({ _id: patientId }).populate("medications");
+    // One User
+    user: async (parent, { userId }) => {
+      return User.findOne({ _id: userId });
     },
-    // Logged in Patient
+    // Logged in User
     me: async (parent, args, context) => {
       if (context.user) {
-        return Patient.findOne({ _id: context.user._id });
+        return User.findOne({ _id: context.user._id });
       }
       throw new AuthenticationError("Log in or create an account.");
     },
-    // ---  Symptoms ---
-
-    // ---  Medications ---
-    
+    // ---  Logged in User's Symptoms ---
+    symptoms: async (parent, { userId, currentDate }) => {
+      return SymptomLog.findOne({ _id: userId }).populate("medications");
+    },
+    // ---  Logged in User's Medications ---
+    medications: async (parent, { patientId, currentDate }) => {
+      return MedicationLog.findOne({ _id: patientId }).populate("medications");
+    },
   },
 
   Mutation: {
-    addPatient: async (parent, PatientData) => {
-      const patient = await Patient.create(PatientData);
-      const token = signToken(patient);
+    addUser: async (parent, UserData) => {
+      const user = await User.create(UserData);
+      const token = signToken(user);
 
-      return { token, patient };
+      return { token, user };
     },
-    removePatient: async (parent, args, context) => {
+    removeUser: async (parent, args, context) => {
       if (context.user) {
-        return Patient.findOneAndDelete({ _id: context.user._id });
+        return User.findOneAndDelete({ _id: context.user._id });
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    addSymptomToList: async (parent, { patientId, skill }) => {
-      return Patient.findOneAndUpdate(
-        { _id: patientId },
+    // Add symptom to User's symptoms property
+    addUserSymptom: async (parent, { userId, symptom }) => {
+      return User.findOneAndUpdate(
+        { _id: userId },
         {
-          $addToSet: { skills: skill },
+          $addToSet: { symptoms: symptom },
         },
         {
           new: true,
@@ -51,64 +55,24 @@ const resolvers = {
         }
       );
     },
-    addReportedSymptom: async (parent, { patientId, skill }) => {
-      return Patient.findOneAndUpdate(
-        { _id: patientId },
-        {
-          $addToSet: { reportedSymptoms: symptom },
-        },
-        {
-          new: true,
-          runValidators: true,
-        }
-      );
-    },
-    patientLogin: async (parent, { email, password }) => {
-      const patient = await Profile.findOne({ email });
-
-      if (!patient) {
-        throw new AuthenticationError("No profile with this email found!");
-      }
-
-      const correctPw = await profile.isCorrectPassword(password);
-
-      if (!correctPw) {
-        throw new AuthenticationError("Incorrect password!");
-      }
-
-      const token = signToken(profile);
-      return { token, profile };
-    },
-
-    addSymptom: async (parent, { patientId, skill }, context) => {
+    // Remove symptom from User's symptoms property
+    removeUserSymptom: async (parent, { symptom }, context) => {
       if (context.user) {
-        return Profile.findOneAndUpdate(
-          { _id: patientId },
-          {
-            $addToSet: { skills: skill },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
-      }
-      throw new AuthenticationError("You need to be logged in!");
-    },
-    removeSymptom: async (parent, { symptom }, context) => {
-      if (context.user) {
-        return Symptom.findOneAndUpdate(
+        const user = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { skills: skill } },
+          { $pull: { symptoms: { symptom } } },
           { new: true }
         );
+
+        return user;
       }
-      throw new AuthenticationError("You need to be logged in!");
+
+      throw new AuthenticationError("Please log in or sign up.");
     },
-    // --- Medications ---
-    addMedication: async (parent, { patientId, medication }) => {
-      return Medication.findOneAndUpdate(
-        { _id: patientId },
+    // Add medication to User's symptoms property
+    addUserMedication: async (parent, { userId, medication }) => {
+      return User.findOneAndUpdate(
+        { _id: userId },
         {
           $addToSet: { medications: medication },
         },
@@ -118,15 +82,44 @@ const resolvers = {
         }
       );
     },
-    removeMedication: async (parent, { medication }, context) => {
+    // Remove medication from User's symptoms property
+    removeUserMedication: async (parent, { medication }, context) => {
       if (context.user) {
-        return Medication.findOneAndUpdate(
+        const user = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { skills: skill } },
+          { $pull: { medications: { medication } } },
           { new: true }
         );
+
+        return user;
       }
-      throw new AuthenticationError("You need to be logged in!");
+
+      throw new AuthenticationError("Please log in or sign up.");
+    },
+    userLogin: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        throw new AuthenticationError("No profile with this email found!");
+      }
+
+      // Verify the user entered the right password
+      const correctPass = await user.isCorrectPassword(password);
+
+      if (!correctPass) {
+        throw new AuthenticationError("Incorrect password!");
+      }
+
+      // Sign + send token if the user's password is correct w/ that user's data
+      const token = signToken(user);
+      return { token, user };
+    },
+    logSymptom: async (parent, { userId, date, symptomName, severity }) => {
+      return SymptomLog.create({ userId, date, symptomName, severity });
+    },
+    // --- Medications ---
+    logMedication: async (parent, { userId, date, symptomName, severity }) => {
+      return SymptomLog.create({ userId, date, symptomName, severity });
     },
   },
 };
