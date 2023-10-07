@@ -1,7 +1,7 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
-  type Patient {
+  type User {
     firstName: String!
     lastName: String!
     email: String!
@@ -31,7 +31,7 @@ const typeDefs = gql`
     provider: Provider
   }
 
-  input PatientData {
+  input UserData {
     firstName: String!
     lastName: String!
     email: String!
@@ -42,19 +42,16 @@ const typeDefs = gql`
   }
 
   type Query {
-    patients: [Patient]
-    patient(patientId: ID!): Patient
+    users: [User]
+    user(userId: ID!): User
     medications: [Medication]
     symptoms: [Symptom]
   }
 
   type Mutation {
-    createPatient(patient: PostData): patientResponse
-    createProvider}(provider: ProviderData): providerResponse
+    createUser(user: UserData): userResponse
     addMedication
-    addSymptom
-    reportSymptom
-    
+    addSymptom    
   }
 `;
 

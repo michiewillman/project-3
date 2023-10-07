@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 // import models
-const Medication = require('./Book');
+const Medication = require("./Book");
 
 const userSchema = new Schema({
   firstName: {
@@ -50,19 +50,13 @@ const userSchema = new Schema({
       trim: true,
     },
   ],
-  // All symptoms the patient has reported experiencing
-  reportedSymptoms: [
-    {
-      type: String,
-      trim: true,
-    },
-  ],
-  logs: [
-    {
-      type: String,
-      trim: true,
-    },
-  ],
+  // Future Development: All symptoms the patient has reported experiencing (for research purposes)
+  // reportedSymptoms: [
+  //   {
+  //     type: String,
+  //     trim: true,
+  //   },
+  // ],
 });
 
 // Export the Patient object made from the schema
