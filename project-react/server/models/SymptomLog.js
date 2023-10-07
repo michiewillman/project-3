@@ -2,9 +2,9 @@ const { Schema, model } = require("mongoose");
 // Import date formatting middleware
 const formatDate = require("../utils/formatDate");
 
-// Symptom logs for each day and time reported for a specific Patient
+// Symptom logs for each day and time reported for a specific User
 const symptomLogSchema = new Schema({
-  patientId: {
+  userId: {
     type: Number,
     required: true,
   },
