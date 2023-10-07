@@ -55,17 +55,18 @@ const resolvers = {
       return { token, user };
     },
     // Add symptom to User's symptoms property
-    addUserSymptom: async (parent, { userId, symptom }) => {
-      return User.findOneAndUpdate(
-        { _id: userId },
-        {
-          $addToSet: { symptoms: symptom },
-        },
-        {
-          new: true,
-          runValidators: true,
-        }
-      );
+    addUserSymptom: async (parent, { symptom }, context) => {
+      if (context.user) {
+        const user = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { symptoms: symptom } },
+          { new: true }
+        );
+
+        return user;
+      }
+
+      throw new AuthenticationError("Please log in or sign up.");
     },
     // Remove symptom from User's symptoms property
     removeUserSymptom: async (parent, { symptom }, context) => {
@@ -82,17 +83,18 @@ const resolvers = {
       throw new AuthenticationError("Please log in or sign up.");
     },
     // Add medication to User's symptoms property
-    addUserMedication: async (parent, { userId, medication }) => {
-      return User.findOneAndUpdate(
-        { _id: userId },
-        {
-          $addToSet: { medications: medication },
-        },
-        {
-          new: true,
-          runValidators: true,
-        }
-      );
+    addUserMedication: async (parent, { medication }, context) => {
+      if (context.user) {
+        const user = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { medications: medication } },
+          { new: true }
+        );
+
+        return user;
+      }
+
+      throw new AuthenticationError("Please log in or sign up.");
     },
     // Remove medication from User's symptoms property
     removeUserMedication: async (parent, { medication }, context) => {
