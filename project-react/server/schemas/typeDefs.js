@@ -7,8 +7,8 @@ const typeDefs = gql`
     email: String!
     password: String!
     dob: Date!
-    medications: [Medication]
-    symptoms: [Symptom]
+    medications: [String]
+    symptoms: [String]
   }
 
   type MedicationLog {
@@ -36,7 +36,7 @@ const typeDefs = gql`
     email: String!
     password: String!
     dob: Date!
-    symptoms: [Symptom]
+    symptoms: [String]
   }
 
   type Query {
