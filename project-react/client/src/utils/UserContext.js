@@ -1,13 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 export const UserContext = React.createContext();
 
 const UserProvider = (props) => {
-  const [currentUser, setCurrentUser] = useState({
-    name: 'John',
-    role: 'Admin',
-    id: 142323,
-  });
+  const [currentUser, setCurrentUser] = useState(null);
 
   return (
     <UserContext.Provider value={{ currentUser: currentUser }} {...props} />

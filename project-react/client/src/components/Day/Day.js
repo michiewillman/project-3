@@ -1,11 +1,10 @@
 import { useState } from "react";
+import { date, setDate } from "../../utils/DateContext";
 
 const Day = (patientId) => {
   // Fetch patient where id === patientId & date matches date
 
   // const patient = response;
-  const currentDate = new Date();
-  const [date, setDate] = useState(currentDate);
   const [range, setRange] = useState(0);
 
   return (
