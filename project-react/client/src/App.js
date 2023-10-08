@@ -10,7 +10,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Pages
 import Home from "./pages/Home";
-// import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Header from "./components/Header";
@@ -47,8 +46,8 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
-              <Route path="/account" element={<Profile />} />
-              <Route path="/profiles/:profileId" element={<Profile />} />
+              {/* <Route path="/account" element={<Profile />} />
+              <Route path="/profiles/:profileId" element={<Profile />} /> */}
             </Routes>
           </div>
           <Footer />

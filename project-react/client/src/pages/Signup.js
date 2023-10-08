@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 // Hook from Apollo Client to use mutations
 import { useMutation } from "@apollo/client";
 // GraphQL mutation
-import { ADD_USER } from "../../utils/mutations";
+import { ADD_USER } from "../utils/mutations";
 // User authentication middleware
 import Auth from "../utils/auth";
 import Home from "./Home";

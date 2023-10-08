@@ -47,9 +47,16 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    createUser(user: UserData): userResponse
-    addMedication
-    addSymptom    
+    addUser(user: UserData): userResponse
+    loginUser
+    addUserSymptom  
+    removeUserSymptom  
+    addUserMedication
+    removeUserMedication
+    logSymptom
+    deleteSymptomLog
+    logMedication
+    deleteMedicationLog
   }
 `;
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import Day from "../components/Day";
+import Day from "../components/Day/Day";
 import { QUERY_ME } from "../utils/queries";
 
 const Home = () => {

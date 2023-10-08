@@ -2,9 +2,10 @@ import React from "react";
 
 const SingleSymptom = () => {
   return (
-   <View>
-    
-   </View>
+    <div>
+      <p>Symptom name here</p>
+      <p>Severity scale slider here</p>
+    </div>
   );
 };
 
