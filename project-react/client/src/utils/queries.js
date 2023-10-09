@@ -4,7 +4,13 @@ export const QUERY_USERS = gql`
   query users {
     users {
       _id
-      name
+      firstName
+      lastName
+      email
+      password
+      dob
+      medications
+      symptoms
     }
   }
 `;
@@ -13,7 +19,13 @@ export const QUERY_SINGLE_USER = gql`
   query user($userId: ID!) {
     user(userId: $userId) {
       _id
-      name
+      firstName
+      lastName
+      email
+      password
+      dob
+      medications
+      symptoms
     }
   }
 `;
@@ -22,24 +34,52 @@ export const QUERY_ME = gql`
   query me {
     me {
       _id
+      firstName
+      lastName
+      email
+      password
+      dob
     }
   }
 `;
 
-export const QUERY_SYMPTOM_LOGS = gql`
-  query user($userId: ID!) {
-    user(userId: $userId) {
+export const QUERY_ME_SYMPTOMS = gql`
+  query me {
+    me {
       _id
-      name
+      symptoms
     }
   }
 `;
 
-export const QUERY_MEDICATION_LOGS = gql`
-  query user($userId: ID!) {
-    user(userId: $userId) {
+export const QUERY_ME_MEDS = gql`
+  query me {
+    me {
       _id
-      name
+      medications
+    }
+  }
+`;
+
+export const QUERY_ME_MED_LOGS = gql`
+  query medicationLogs {
+    medicationLogs {
+      _id
+      userId
+      timestamp
+      medicationName
+      dosage
+    }
+  }
+`;
+
+export const QUERY_ME_SYMPTOM_LOGS = gql`
+  query medicationLogs {
+    symptomLogs {
+      userId: Patient
+      date: Date
+      symptomName: String!
+      severity: Int
     }
   }
 `;
