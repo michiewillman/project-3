@@ -40,7 +40,7 @@ const resolvers = {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError("No profile with this email found!");
+        throw new AuthenticationError("No user with this email found!");
       }
 
       // Verify the user entered the right password

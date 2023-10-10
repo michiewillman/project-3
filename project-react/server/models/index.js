@@ -1,3 +1,5 @@
-const Profile = require('./Profile');
+const User = require("./User");
+const MedicationLog = require("./MedicationLog");
+const SymptomLog = require("./SymptomLog");
 
 module.exports = { Profile };
