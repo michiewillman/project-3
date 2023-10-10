@@ -1,4 +1,4 @@
-import SingleSymptom from "../../components/SingleSymptom/SingleSymptom";
+// import SingleSymptom from "../../components/SingleSymptom/SingleSymptom";
 
 // Symptoms automatically loaded into user choices
 const defaultSymptoms = [
