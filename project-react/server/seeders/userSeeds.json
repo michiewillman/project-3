@@ -4,43 +4,32 @@
     "lastName": "Ono",
     "email": "bkernighan@techfriends.dev",
     "password": "password01",
-    "dob": "Fri Jun 17 2022 11:27:28 GMT+0100",
     "medications": ["prednisone", "mestinon", "iron"],
-    "customSymptoms": "",
-    "reportedSymptoms": ["Droopy eyelid(s)", "General fatigue"]
+    "symptoms": ["Droopy eyelid(s)"]
   },
   {
     "firstName": "Michael",
     "lastName": "Scott",
     "email": "mike@dundermufflin.com",
     "password": "dundee33",
-    "dob": "Fri Jun 17 2022 11:27:28 GMT+0100",
     "medications": [],
-    "customSymptoms": "",
-    "reportedSymptoms": [
-      "Difficulty chewing",
-      "Impaired speech",
-      "Facial expressions"
-    ]
+    "symptoms": ["Difficulty chewing", "Impaired speech", "Facial expressions"]
   },
   {
-    "firstName": "Brian",
-    "lastName": "Ono",
-    "email": "bkernighan@techfriends.dev",
-    "password": "password01",
-    "dob": "Fri Jun 17 2022 11:27:28 GMT+0100",
+    "firstName": "Rain",
+    "lastName": "Wilson",
+    "email": "dwight@schrutefarms.org",
+    "password": "beetsbattlestar",
     "medications": ["l-theanine", "mestinon"],
-    "customSymptoms": "",
-    "reportedSymptoms": ["Droopy eyelid(s)", "General fatigue"]
+    "symptoms": []
   },
   {
-    "firstName": "Brian",
-    "lastName": "Ono",
-    "email": "bkernighan@techfriends.dev",
-    "password": "password01",
+    "firstName": "Ron",
+    "lastName": "Swanson",
+    "email": "hardwareguy08@gmail.com",
+    "password": "toolsMEAT08",
     "dob": "Fri Jun 17 2022 11:27:28 GMT+0100",
-    "medications": [],
-    "customSymptoms": "",
-    "reportedSymptoms": ["Shortness of Breath", "General fatigue"]
+    "medications": ["imuran"],
+    "symptoms": ["Shortness of Breath", "General fatigue"]
   }
 ]

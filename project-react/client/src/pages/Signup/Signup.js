@@ -15,6 +15,7 @@ const Signup = () => {
     password: "",
     dob: "",
   });
+
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
   // Update the state of the input when user types

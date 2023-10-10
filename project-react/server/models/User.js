@@ -20,7 +20,6 @@ const userSchema = new Schema({
   // Date of birth
   dob: {
     type: Date,
-    required: true,
   },
   // User's current medications
   medications: [

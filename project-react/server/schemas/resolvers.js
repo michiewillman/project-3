@@ -135,7 +135,7 @@ const resolvers = {
     },
 
     // Symptom Logs for a specific user
-    logSymptom: async (parent, { userId, date, symptomName, severity }) => {
+    addSymptomLog: async (parent, { userId, date, symptomName, severity }) => {
       return SymptomLog.create({
         userId,
         date,
@@ -148,7 +148,7 @@ const resolvers = {
     },
 
     // Medication logs for a specific user
-    logMedication: async (
+    addMedicationLog: async (
       parent,
       { userId, timestamp, medicationName, dosage }
     ) => {

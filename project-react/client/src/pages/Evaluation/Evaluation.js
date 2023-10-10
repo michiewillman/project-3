@@ -5,7 +5,6 @@ const defaultSymptoms = [
   {
     symptom: "Shortness of breath",
     severity: symptomSeverityScale,
-    
   },
   {
     symptom: "Difficulty swallowing",
@@ -38,14 +37,6 @@ const defaultSymptoms = [
   {
     symptom: "General fatigue",
     severity: symptomSeverityScale,
-  },
-  // Show additional input for custom symptom that gets added to that patient's availableSymptoms array
-  {
-    symptom: "Other",
-    severity: symptomSeverityScale,
-  },
-  {
-    symptom: "None",
   },
 ];
 

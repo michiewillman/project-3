@@ -1,12 +1,6 @@
 [
   {
-    "firstName": "Brian",
-    "lastName": "Kernighan",
-    "email": "bkernighan@techfriends.dev",
-    "password": "password01",
-    "city": "Portland",
-    "state": "Oregon",
-    "practice": "OHSU Neurology Clinic, South Waterfront",
-    "patients": [1, 2, 3, 4, 5]
+    "medicationName": "Prednisone",
+    "dosage": "150 mg"
   }
 ]

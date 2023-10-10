@@ -1,24 +1,36 @@
 import { gql } from "@apollo/client";
 
 export const ADD_USER = gql`
-  mutation addProfile($name: String!, $email: String!, $password: String!) {
-    addProfile(name: $name, email: $email, password: $password) {
+  mutation addUser($input: UserData) {
+    addUser(input: $input) {
       token
-      profile {
+      user {
         _id
-        name
+        firstName
+        lastName
+        email
+        password
+        dob
+        medications
+        symptoms
       }
     }
   }
 `;
 
 export const LOGIN_USER = gql`
-  mutation login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
+  mutation loginUser($email: String!, $password: String!) {
+    loginUser(email: $email, password: $password) {
       token
-      profile {
+      user {
         _id
-        name
+        firstName
+        lastName
+        email
+        password
+        dob
+        medications
+        symptoms
       }
     }
   }
@@ -26,72 +38,110 @@ export const LOGIN_USER = gql`
 
 // User's symptoms property
 export const ADD_USER_SYMPTOM = gql`
-  mutation addSkill($profileId: ID!, $skill: String!) {
-    addSkill(profileId: $profileId, skill: $skill) {
-      _id
-      name
+  mutation addUserSymptom($symptom: String!) {
+    addUserSymptom(symptom: $symptom) {
+      token
+      user {
+        _id
+        symptoms
+      }
     }
   }
 `;
 export const REMOVE_USER_SYMPTOM = gql`
-  mutation removeSkill($skill: String!) {
-    removeSkill(skill: $skill) {
-      _id
-      name
+  mutation removeUserSymptom($symptom: String!) {
+    removeUserSymptom(symptom: $symptom) {
+      token
+      user {
+        _id
+        symptoms
+      }
     }
   }
 `;
 
 // User's medications property
 export const ADD_USER_MEDICATION = gql`
-  mutation addSkill($profileId: ID!, $skill: String!) {
-    addSkill(profileId: $profileId, skill: $skill) {
-      _id
-      name
+  mutation addUserMedication($medication: String!) {
+    addUserMedication(medication: $medication) {
+      token
+      user {
+        _id
+        medications
+      }
     }
   }
 `;
 export const REMOVE_USER_MEDICATION = gql`
-  mutation removeSkill($skill: String!) {
-    removeSkill(skill: $skill) {
-      _id
-      name
+  mutation removeUserMedication($medication: String!) {
+    removeUserMedication(medication: $medication) {
+      token
+      user {
+        _id
+        medications
+      }
     }
   }
 `;
+
 // Symptom Log entries in its own collection
 export const ADD_SYMPTOM_LOG = gql`
-  mutation removeSkill($skill: String!) {
-    removeSkill(skill: $skill) {
+  mutation addSymptomLog(
+    $userId: ID!
+    $date: Date!
+    $symptomName: String!
+    $severity: Int
+  ) {
+    addSymptomLog(
+      userId: $userId
+      date: $date
+      symptomName: $symptomName
+      severity: $severity
+    ) {
       _id
-      name
+      userId
+      symptomName
+      date
+      severity
     }
   }
 `;
 
 export const DELETE_SYMPTOM_LOG = gql`
-  mutation removeSkill($skill: String!) {
-    removeSkill(skill: $skill) {
+  mutation deleteSymptomLog($logId: ID!) {
+    deleteSymptomLog(logId: $logId) {
       _id
-      name
     }
   }
 `;
+
 // Medication Log entries in its own collection
 export const ADD_MEDICATION_LOG = gql`
-  mutation removeSkill($skill: String!) {
-    removeSkill(skill: $skill) {
+  mutation addMedicationLog(
+    $userId: ID!
+    $timestamp: Date!
+    $medicationName: String!
+    $dosage: String
+  ) {
+    addMedicationLog(
+      userId: $userId
+      timestamp: $timestamp
+      medicationName: $medicationName
+      dosage: $dosage
+    ) {
       _id
-      name
+      userId
+      timestamp
+      medicationName
+      dosage
     }
   }
 `;
 
 export const DELETE_MEDICATION_LOG = gql`
-  mutation removeSkill($skill: String!) {
-    removeSkill(skill: $skill) {
+  mutation deleteMedicationLog($logId: ID!) {
+    deleteMedicationLog(logId: $logId) {
       _id
-      name
     }
   }
 `;

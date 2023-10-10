@@ -11,7 +11,7 @@ const typeDefs = gql`
     lastName: String!
     email: String!
     password: String!
-    dob: Date!
+    dob: Date
     medications: [String]
     symptoms: [String]
   }
@@ -42,7 +42,6 @@ const typeDefs = gql`
     lastName: String!
     email: String!
     password: String!
-    dob: Date!
   }
 
   type Query {
@@ -60,14 +59,14 @@ const typeDefs = gql`
     removeUserSymptom(symptom: String!): Auth
     addUserMedication(medication: String!): Auth
     removeUserMedication(medication: String!): Auth
-    logSymptom(
+    addSymptomLog(
       userId: ID!
       date: Date!
       symptomName: String!
       severity: Int
     ): SymptomLog
     deleteSymptomLog(logId: ID!): SymptomLog
-    logMedication(
+    addMedicationLog(
       userId: ID!
       timestamp: Date!
       medicationName: String!
