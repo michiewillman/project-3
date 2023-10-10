@@ -45,11 +45,10 @@ export const QUERY_ME = gql`
   }
 `;
 
-export const QUERY_ME_MED_LOGS = gql`
-  query getMedicationLogs {
-    medicationLogs(medicationLogsId: $medicationLogsId) {
+export const QUERY_MEDICATION_LOGS = gql`
+  query medicationLogs($userId: ID!, $date: Date) {
+    medicationLogs(userId: $userId, date: $date) {
       _id
-      userId
       timestamp
       medicationName
       dosage
@@ -57,13 +56,13 @@ export const QUERY_ME_MED_LOGS = gql`
   }
 `;
 
-export const QUERY_ME_SYMPTOM_LOGS = gql`
-  query getSymptomLogs {
-    symptomLogs {
-      userId: Patient
-      date: Date
-      symptomName: String!
-      severity: Int
+export const QUERY_SYMPTOM_LOGS = gql`
+  query symptomLogs($userId: ID!, $timestamp: Date) {
+    symptomLogs(userId: $userId, timestamp: $timestamp) {
+      _id
+      date
+      symptomName
+      severity
     }
   }
 `;
