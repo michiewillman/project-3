@@ -4,7 +4,7 @@ import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../../utils/queries";
 // User authentication
 import Auth from "../../utils/auth";
-import Medication from "../../components/Medication/Medication";
+import Medication from "../../components/MedicationList/MedicationList";
 
 const MyAccount = () => {
   const { userId } = useParams();

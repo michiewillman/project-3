@@ -42,21 +42,32 @@ const typeDefs = gql`
   type Query {
     users: [User]
     user(userId: ID!): User
-    medications: [MedicationLog]
-    symptoms: [SymptomLog]
+    me: User
+    medicationLogs(userId: ID!, currentDate: Date): [MedicationLog]
+    symptomLogs(userId: ID!, currentTime: Date): [SymptomLog]
   }
 
   type Mutation {
-    addUser(user: UserData): userResponse
-    loginUser
-    addUserSymptom  
-    removeUserSymptom  
-    addUserMedication
-    removeUserMedication
-    logSymptom
-    deleteSymptomLog
-    logMedication
-    deleteMedicationLog
+    addUser(user: UserData): Auth
+    loginUser(email: String!, password: String!): Auth
+    addUserSymptom(symptom: String!): User
+    removeUserSymptom(symptom: String!): User
+    addUserMedication(medication: String!): User
+    removeUserMedication(medication: String!): User
+    logSymptom(
+      userId: ID!
+      date: Date!
+      symptomName: String!
+      severity: Int
+    ): SymptomLog
+    deleteSymptomLog(logId: ID!): SymptomLog
+    logMedication(
+      userId: ID!
+      timestamp: Date!
+      medicationName: String!
+      dosage: String
+    ): MedicationLog
+    deleteMedicationLog(logId: ID!): MedicationLog
   }
 `;
 

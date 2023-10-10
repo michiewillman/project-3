@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, SymptomLog, MedicationLog } = require("../models");
+const { User, MedicationLog, SymptomLog } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -24,8 +24,8 @@ const resolvers = {
       return SymptomLog.findOne({ _id: userId, date: currentDate });
     },
     // ---  Logged in User's Medications for a specific day ---
-    medicationLogs: async (parent, { patientId, currentTime }) => {
-      return MedicationLog.findOne({ _id: patientId, date: currentTime });
+    medicationLogs: async (parent, { userId, currentTime }) => {
+      return MedicationLog.findOne({ _id: userId, date: currentTime });
     },
   },
 

@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_USERS = gql`
-  query users {
+  query user {
     users {
       _id
       firstName
@@ -16,7 +16,7 @@ export const QUERY_USERS = gql`
 `;
 
 export const QUERY_SINGLE_USER = gql`
-  query user($userId: ID!) {
+  query getUser($userId: ID!) {
     user(userId: $userId) {
       _id
       firstName
@@ -44,8 +44,8 @@ export const QUERY_ME = gql`
 `;
 
 export const QUERY_ME_SYMPTOMS = gql`
-  query me {
-    me {
+  query getUserSymptoms {
+    user(_id: $userId) {
       _id
       symptoms
     }
@@ -53,8 +53,8 @@ export const QUERY_ME_SYMPTOMS = gql`
 `;
 
 export const QUERY_ME_MEDS = gql`
-  query me {
-    me {
+  query getUserMeds {
+    user(_id: $userId) {
       _id
       medications
     }
@@ -62,8 +62,8 @@ export const QUERY_ME_MEDS = gql`
 `;
 
 export const QUERY_ME_MED_LOGS = gql`
-  query medicationLogs {
-    medicationLogs {
+  query getMedicationLogs {
+    medicationLogs(medicationLogsId: $medicationLogsId) {
       _id
       userId
       timestamp
@@ -74,7 +74,7 @@ export const QUERY_ME_MED_LOGS = gql`
 `;
 
 export const QUERY_ME_SYMPTOM_LOGS = gql`
-  query medicationLogs {
+  query getSymptomLogs {
     symptomLogs {
       userId: Patient
       date: Date

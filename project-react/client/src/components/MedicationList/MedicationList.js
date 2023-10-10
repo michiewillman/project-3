@@ -1,6 +1,7 @@
 // Use query to get graphQL data
 import { useQuery } from "@apollo/client";
 import { QUERY_ME_MEDS } from "../../utils/queries";
+import SingleMedication from "../MedicationCard/MedicationCard";
 
 const MedicationList = (userId) => {
   // Get user's medications property (as array)
@@ -13,11 +14,11 @@ const MedicationList = (userId) => {
   // Otherwise proceed...
 
   // Handle "Take Medication" button click
-  const handleTakeMedication = (event) => {
-    // Set medication as the buton's target value (name of medicine)
-    // Not sure if below is correct
-    const medication = e.target.value;
-  };
+  // const handleTakeMedication = (event) => {
+  //   // Set medication as the buton's target value (name of medicine)
+  //   // Not sure if below is correct
+  //   const medication = event.target.value;
+  // };
   // -- add new medication to array
   // -- Update db of patient's medications
   // -- Update state of patient's medications
@@ -25,10 +26,8 @@ const MedicationList = (userId) => {
 
   return (
     <ul className="list-group">
-      {userId.medications.map((medication) => (
-        <li className="avail-med-card" key={medication.id}>
-          <img alt={result.title} src={result.images.original.url} />
-        </li>
+      {medications.map((med) => (
+        <SingleMedication key={med._id} medication={med} />
       ))}
     </ul>
   );
