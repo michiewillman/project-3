@@ -1,5 +1,3 @@
-// import SingleSymptom from "../../components/SingleSymptom/SingleSymptom";
-
 // Symptoms automatically loaded into user choices
 const defaultSymptoms = [
   {
@@ -39,6 +37,22 @@ const defaultSymptoms = [
     severity: symptomSeverityScale,
   },
 ];
+
+const SymptomList = ({ userId }) => {
+  const { loading, data } = useQuery(QUERY_SYMPTOM_LOGS);
+  const [range, setRange] = useState(0);
+
+  if (loading) {
+    <p>Loading...</p>;
+  }
+  return (
+    <div>
+      <p>Placeholder for patient evaluation</p>
+    </div>
+  );
+};
+
+export default SymptomList;
 
 // for each symptom in the defaultSymptoms, render a title with the name of the symptom, and a scale below it allowing the user to input their answers
 

@@ -1,14 +1,15 @@
 // Use query to get graphQL data
 import { useQuery } from "@apollo/client";
 import { QUERY_MEDICATION_LOGS } from "../../utils/queries";
-import SingleMedication from "../MedicationCard/MedicationCard";
+import SingleMedication from "../MedCard/MedCard";
 
-const MedicationList = (userId) => {
+const MedicationLogList = (userId) => {
   // Get user's medications property (as array)
   const { loading, data } = useQuery(QUERY_MEDICATION_LOGS, {
     variables: { _id: userId },
   });
-  const medications = data?.user;
+  const logs = data?.user || {};
+  console.log(logs);
 
   // if empty medications array, exit func
   // Otherwise proceed...
@@ -24,16 +25,25 @@ const MedicationList = (userId) => {
   // -- Update state of patient's medications
   // const deleteMedLog = () => {
 
+  if (loading) {
+    <p>Loading...</p>;
+  }
   return (
-    <ul className="list-group">
-      {medications.map((med) => (
-        <SingleMedication key={med._id} medication={med} />
-      ))}
-    </ul>
+    <div>
+      <ul className="list-group">
+        {medications.map((med) => (
+          <div className="logCard" key={med._id}>
+            <h3>Medication Name</h3>
+            <p>Dosage</p>
+            <p>Time taken</p>
+          </div>
+        ))}
+      </ul>
+    </div>
   );
 };
 
-export default MedicationList;
+export default MedicationLogList;
 
 //  use flatlist for logs?
 //  Animated.sequence(log cards)

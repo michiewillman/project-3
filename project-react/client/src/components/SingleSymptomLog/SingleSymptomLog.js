@@ -1,12 +1,12 @@
 import React from "react";
 
-const SingleSymptom = () => {
+const SingleSymptomLog = ({ log }) => {
   return (
     <div>
-      <p>Symptom name here</p>
+      <p>{log}</p>
       <p>Severity scale slider here</p>
     </div>
   );
 };
 
-export default SingleSymptom;
+export default SingleSymptomLog;
