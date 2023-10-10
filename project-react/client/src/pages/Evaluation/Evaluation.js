@@ -5,6 +5,7 @@ const defaultSymptoms = [
   {
     symptom: "Shortness of breath",
     severity: symptomSeverityScale,
+    
   },
   {
     symptom: "Difficulty swallowing",

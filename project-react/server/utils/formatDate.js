@@ -1,22 +1,22 @@
-// const addDateSuffix = (date) => {
-//   // Convert date to a string
-//   let dateStr = date.toString();
+const addDateSuffix = (date) => {
+  // Convert date to a string
+  let dateStr = date.toString();
 
-//   // Get last characters in date string
-//   const lastChar = dateStr.charAt(dateStr.length - 1);
+  // Get last characters in date string
+  const lastChar = dateStr.charAt(dateStr.length - 1);
 
-//   if (lastChar === "1" && dateStr !== "11") {
-//     dateStr = `${dateStr}st`;
-//   } else if (lastChar === "2" && dateStr !== "12") {
-//     dateStr = `${dateStr}nd`;
-//   } else if (lastChar === "3" && dateStr !== "13") {
-//     dateStr = `${dateStr}rd`;
-//   } else {
-//     dateStr = `${dateStr}th`;
-//   }
+  if (lastChar === "1" && dateStr !== "11") {
+    dateStr = `${dateStr}st`;
+  } else if (lastChar === "2" && dateStr !== "12") {
+    dateStr = `${dateStr}nd`;
+  } else if (lastChar === "3" && dateStr !== "13") {
+    dateStr = `${dateStr}rd`;
+  } else {
+    dateStr = `${dateStr}th`;
+  }
 
-//   return dateStr;
-// };
+  return dateStr;
+};
 
 // function to format a timestamp, accepts the timestamp and an `options` object as parameters
 module.exports = (
