@@ -6,6 +6,7 @@ const typeDefs = gql`
   scalar Date
 
   type User {
+    _id: ID!
     firstName: String!
     lastName: String!
     email: String!
@@ -16,6 +17,7 @@ const typeDefs = gql`
   }
 
   type MedicationLog {
+    _id: ID!
     userId: ID!
     timestamp: Date
     medicationName: String!
@@ -23,6 +25,7 @@ const typeDefs = gql`
   }
 
   type SymptomLog {
+    _id: ID!
     userId: ID!
     date: Date
     symptomName: String!
