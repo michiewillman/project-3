@@ -1,6 +1,10 @@
 const { gql } = require("apollo-server-express");
 
+// In order to use Date as a type, we need to establish a scalar (new rule) for date
+
 const typeDefs = gql`
+  scalar Date
+
   type User {
     firstName: String!
     lastName: String!
@@ -19,7 +23,7 @@ const typeDefs = gql`
   }
 
   type SymptomLog {
-    userId: Patient
+    userId: ID!
     date: Date
     symptomName: String!
     severity: Int
@@ -27,7 +31,7 @@ const typeDefs = gql`
 
   type Auth {
     token: ID!
-    patient: Patient
+    user: User
   }
 
   input UserData {
