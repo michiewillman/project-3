@@ -2,4 +2,4 @@ const User = require("./User");
 const MedicationLog = require("./MedicationLog");
 const SymptomLog = require("./SymptomLog");
 
-module.exports = { Profile };
+module.exports = { User, MedicationLog, SymptomLog };
