@@ -57,10 +57,10 @@ const typeDefs = gql`
   type Mutation {
     addUser(user: UserData): Auth
     loginUser(email: String!, password: String!): Auth
-    addUserSymptom(symptom: String!): User
-    removeUserSymptom(symptom: String!): User
-    addUserMedication(medication: String!): User
-    removeUserMedication(medication: String!): User
+    addUserSymptom(symptom: String!): Auth
+    removeUserSymptom(symptom: String!): Auth
+    addUserMedication(medication: String!): Auth
+    removeUserMedication(medication: String!): Auth
     logSymptom(
       userId: ID!
       date: Date!
