@@ -43,7 +43,6 @@ const typeDefs = gql`
     email: String!
     password: String!
     dob: Date!
-    symptoms: [String]
   }
 
   type Query {

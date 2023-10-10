@@ -2,12 +2,12 @@ import React from "react";
 // Import the `useParams()` hook
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { QUERY_ME_MEDS } from "../../utils/queries";
+import { QUERY_MEDICATION_LOGS } from "../../utils/queries";
 
 const MedicationCard = () => {
   // Use `useParams()` to retrieve value of the route parameter `:userId`
   const { userId } = useParams();
-  const { loading, data } = useQuery(QUERY_ME_MEDS, {
+  const { loading, data } = useQuery(QUERY_MEDICATION_LOGS, {
     // Find meds where userId matches data
     variables: { _id: userId },
   });
