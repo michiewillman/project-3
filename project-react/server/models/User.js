@@ -1,4 +1,6 @@
 const { Schema, model } = require("mongoose");
+// Import bcrypt for password hashing & validation
+const bcrypt = require("bcrypt");
 
 const userSchema = new Schema({
   firstName: {
@@ -35,9 +37,10 @@ const userSchema = new Schema({
   ],
 });
 
-// Hash the user's password for encryption
+// Password hashing for encryption
 userSchema.pre("save", async function (next) {
   if (this.isNew || this.isModified("password")) {
+    // how many levels deep
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
   }
