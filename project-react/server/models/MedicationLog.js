@@ -5,10 +5,11 @@ const formatDate = require("../utils/formatDate");
 // Medication logs for each User with a timestamp of when they took the medication
 const medicationLogSchema = new Schema({
   userId: {
-    type: Number,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
     required: true,
   },
-  timestamp: {
+  datetime: {
     type: Date,
     default: Date.now,
     get: (timestamp) => formatDate(timestamp),

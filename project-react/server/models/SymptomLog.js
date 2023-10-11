@@ -5,10 +5,11 @@ const formatDate = require("../utils/formatDate");
 // Symptom logs for each day and time reported for a specific User
 const symptomLogSchema = new Schema({
   userId: {
-    type: Number,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
     required: true,
   },
-  date: {
+  datetime: {
     type: Date,
     default: Date.now,
     get: (timestamp) => formatDate(timestamp),

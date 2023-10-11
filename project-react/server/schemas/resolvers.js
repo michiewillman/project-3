@@ -137,23 +137,35 @@ const resolvers = {
     // Symptom Logs for a specific user
     addSymptomLog: async (parent, { symptomName, severity }, context) => {
       if (context.user) {
-        return SymptomLog.create(
-          { userId: context.user._id },
-          { symptomName, severity }
-        );
+        return SymptomLog.create({
+          userId: context.user._id,
+          datetime: new Date(),
+          symptomName,
+          severity,
+        });
       }
+
+      throw new AuthenticationError("Please log in or sign up.");
     },
+
     deleteSymptomLog: async (parent, { logId }) => {
       return SymptomLog.findOneAndDelete({ _id: logId });
     },
 
     // Medication logs for a specific user
     addMedicationLog: async (parent, { medicationName, dosage }, context) => {
-      return MedicationLog.create({
-        medicationName,
-        dosage,
-      });
+      if (context.user) {
+        return MedicationLog.create({
+          userId: context.user._id,
+          datetime: new Date(),
+          medicationName,
+          dosage,
+        });
+      }
+
+      throw new AuthenticationError("Please log in or sign up.");
     },
+
     deleteMedicationLog: async (parent, { logId }) => {
       return MedicationLog.findOneAndDelete({ _id: logId });
     },
