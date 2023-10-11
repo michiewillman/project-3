@@ -1,11 +1,12 @@
 const { Schema, model } = require("mongoose");
 // Import date formatting middleware
 const formatDate = require("../utils/formatDate");
+const User = require("./User"); // Import the User model
 
 // Medication logs for each User with a timestamp of when they took the medication
 const medicationLogSchema = new Schema({
   userId: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId, // Use Schema.Types.ObjectId here
     ref: "User",
     required: true,
   },

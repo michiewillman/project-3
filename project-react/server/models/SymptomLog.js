@@ -1,11 +1,12 @@
 const { Schema, model } = require("mongoose");
 // Import date formatting middleware
 const formatDate = require("../utils/formatDate");
+const User = require("./User"); // Import the User model
 
 // Symptom logs for each day and time reported for a specific User
 const symptomLogSchema = new Schema({
   userId: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId, // Use Schema.Types.ObjectId here
     ref: "User",
     required: true,
   },
