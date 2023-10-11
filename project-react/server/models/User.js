@@ -2,40 +2,48 @@ const { Schema, model } = require("mongoose");
 // Import bcrypt for password hashing & validation
 const bcrypt = require("bcrypt");
 
-const userSchema = new Schema({
-  firstName: {
-    type: String,
-    required: true,
-  },
-  lastName: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    match: [/.+@.+\..+/, "Must use a valid email address"],
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-  // User's current medications
-  medications: [
-    {
+const userSchema = new Schema(
+  {
+    firstName: {
       type: String,
-      trim: true,
+      required: true,
     },
-  ],
-  // All symptoms available in the user's symptom checklist
-  symptoms: [
-    {
+    lastName: {
       type: String,
-      trim: true,
+      required: true,
     },
-  ],
-});
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      match: [/.+@.+\..+/, "Must use a valid email address"],
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    // User's current medications
+    medications: [
+      {
+        type: String,
+        trim: true,
+      },
+    ],
+    // All symptoms available in the user's symptom checklist
+    symptoms: [
+      {
+        type: String,
+        trim: true,
+      },
+    ],
+  },
+  // set this to use virtual below
+  {
+    toJSON: {
+      virtuals: true,
+    },
+  }
+);
 
 // Password hashing for encryption
 userSchema.pre("save", async function (next) {
