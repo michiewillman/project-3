@@ -10,8 +10,6 @@ const typeDefs = gql`
     firstName: String!
     lastName: String!
     email: String!
-    password: String!
-    dob: Date
     medications: [String]
     symptoms: [String]
   }

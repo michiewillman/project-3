@@ -1,9 +1,9 @@
 // Use query to get graphQL data
 import { useQuery } from "@apollo/client";
 import { QUERY_MEDICATION_LOGS } from "../../utils/queries";
-import SingleMedication from "../MedCard/MedCard";
+import MedLogCard from "../MedLogCard/MedLogCard";
 
-const MedicationLogList = (userId) => {
+const MedicationLogList = ({ userId }) => {
   // Get user's medications property (as array)
   const { loading, data } = useQuery(QUERY_MEDICATION_LOGS, {
     variables: { _id: userId },
@@ -30,15 +30,12 @@ const MedicationLogList = (userId) => {
   }
   return (
     <div>
-      <ul className="list-group">
-        {medications.map((med) => (
-          <div className="logCard" key={med._id}>
-            <h3>Medication Name</h3>
-            <p>Dosage</p>
-            <p>Time taken</p>
-          </div>
+      <h2>Medication Logs</h2>
+      <div className="list-group">
+        {logs.map((log) => (
+          <MedLogCard key={log._id} />
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

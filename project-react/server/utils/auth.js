@@ -1,13 +1,11 @@
 const jwt = require("jsonwebtoken");
-
-const secret = process.env.TOKEN_SECRET;
+// require("dotenv").config();
+const secret = "wiLL n33d 2 ChANG3";
 const expiration = "2h";
 
 module.exports = {
   authMiddleware: function ({ req }) {
-    // allows token to be sent via req.body, req.query, or headers
-    // body.token = "token" value sent in JSON body on insomnia, etc
-    // heaers --> add headers, ex- type: authorization,app/json: saadfkojaf;jd
+    // Allows token to be sent via req.body, req.query, or headers
     let token = req.body.token || req.query.token || req.headers.authorization;
 
     // We split the token string into an array and return actual token

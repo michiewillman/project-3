@@ -7,7 +7,10 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// Global styles
 import "./App.css";
+// Pass user context down to all children in App
+import UserProvider from "./utils/UserContext";
 
 // Pages
 import Signup from "./pages/Signup/Signup";
@@ -40,20 +43,22 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Router>
-        <div className="flex-column justify-flex-start min-100-vh">
-          <Header />
-          <div className="container">
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/account" element={<MyAccount />} />
-            </Routes>
+      <UserProvider>
+        <Router>
+          <div className="flex-column justify-flex-start min-100-vh">
+            <Header />
+            <div className="container">
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/account" element={<MyAccount />} />
+              </Routes>
+            </div>
+            <Footer />
           </div>
-          <Footer />
-        </div>
-      </Router>
+        </Router>
+      </UserProvider>
     </ApolloProvider>
   );
 }

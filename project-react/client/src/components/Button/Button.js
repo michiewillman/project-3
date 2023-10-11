@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export const PrimaryButton = ({ text, action }) => {
+const PrimaryButton = ({ text, action }) => {
   return (
     <div>
       <Link>
@@ -12,7 +12,7 @@ export const PrimaryButton = ({ text, action }) => {
   );
 };
 
-export const SecondaryButton = ({ text, action }) => {
+const SecondaryButton = ({ text, action }) => {
   return (
     <div>
       <Link>
@@ -23,3 +23,5 @@ export const SecondaryButton = ({ text, action }) => {
     </div>
   );
 };
+
+export default { PrimaryButton, SecondaryButton };

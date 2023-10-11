@@ -4,19 +4,18 @@ import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../../utils/queries";
 // User authentication
 import Auth from "../../utils/auth";
-import Medication from "../../components/MedicationList/MedicationList";
+// Use global User context
+// import { useUserContext } from "../utils/ThemeContext";
 
 const MyAccount = () => {
+  // Get logged in user's data
   const { userId } = useParams();
-
-  // Execute the `QUERY_ME` query for the logged in user's data
   const { loading, data } = useQuery(QUERY_ME, {
     variables: { _id: userId },
   });
-
-  // Check if data is returning from the `QUERY_ME` query, then the `QUERY_SINGLE_PROFILE` query
   const user = data?.me || data?.user || {};
 
+  // If the user is logged in and authenticated, continue to account page
   if (Auth.loggedIn() && Auth.getUser().data._id === userId) {
     return <Navigate to="/account" />;
   }
@@ -31,17 +30,10 @@ const MyAccount = () => {
 
   return (
     <div>
-      <h2>
-        {userId ? `${user.name}'s` : "Your"} friends have endorsed these
-        skills...
-      </h2>
-
-      {user.skills?.length > 0 && (
-        <Medication
-          medLogs={user.medications}
-          isLoggedInUser={!userId && true}
-        />
-      )}
+      <p>First name</p>
+      <p>Last name</p>
+      <p>Email</p>
+      <p>Medications</p>
     </div>
   );
 };

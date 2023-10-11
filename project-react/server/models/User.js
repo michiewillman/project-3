@@ -12,14 +12,12 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
+    match: [/.+@.+\..+/, "Must use a valid email address"],
   },
   password: {
     type: String,
     required: true,
-  },
-  // Date of birth
-  dob: {
-    type: Date,
   },
   // User's current medications
   medications: [

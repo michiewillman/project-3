@@ -3,11 +3,13 @@ import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_ME } from "../../utils/queries";
 import { ADD_SYMPTOM_LOG } from "../../utils/mutations";
 import SymptomLogList from "../../components/SymptomLogList/SymptomLogList";
-import MedicationLogList from "../../components/MedicationLogList";
-import Button from "../../components/Button/Button";
+import MedicationLogList from "../../components/MedicationLogList/MedicationLogList";
+import PrimaryButton from "../../components/Button/Button";
+import UserMeds from "../../components/UserMeds/UserMeds";
 
 // import { useState } from "react";
-import { date, setDate } from "../../utils/DateContext";
+// import { date, setDate } from "../../utils/DateContext";
+// import { user, setUser } from "../../utils/UserContext";
 
 //   {/* Set icon image to interaact with the severity chosen (ex: create an array of objects and the index corresponds to the icon --> then set the range values to correspond, or use switch case? ) */}
 //   <Text>{range}</Text>
@@ -33,10 +35,10 @@ const Dashboard = () => {
   const { loading, data } = useQuery(QUERY_ME);
   const user = data?.user || [];
 
-  const handleLogSymptom = async (event) => {
-    // Use the mutation to log the user's symptom
-    const [addSymptomLog, { error }] = useMutation(ADD_SYMPTOM_LOG);
+  // Use the mutation to log the user's symptom
+  const [addSymptomLog, { error }] = useMutation(ADD_SYMPTOM_LOG);
 
+  const handleLogSymptom = async (event) => {
     try {
       // Create a symptom log
       const { data } = await addSymptomLog({
@@ -56,12 +58,13 @@ const Dashboard = () => {
         <div>Loading...</div>
       ) : (
         <div>
-          <p>Medications</p>
-          <MedicationLogList medications={user.medications} />
-          <Button text={"Add Medication"} action={handleLogSymptom} />
+          {/* <MedicationLogList /> */}
+          <p>Take Your Medicine</p>
+          {/* <UserMeds medications={user.medications} /> */}
+          {/* <PrimaryButton text={"Add Medication"} action={handleLogSymptom} /> */}
           <p>Symptoms</p>
-          <SymptomLogList symptoms={user.symptoms} />
-          <Button text={"Log Symptom"} action={handleLogSymptom} />
+          {/* <SymptomLogList symptoms={user.symptoms} /> */}
+          {/* <PrimaryButton text={"Log Symptom"} action={handleLogSymptom} /> */}
         </div>
       )}
     </main>
