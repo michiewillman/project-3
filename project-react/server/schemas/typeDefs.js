@@ -17,7 +17,7 @@ const typeDefs = gql`
   type MedicationLog {
     _id: ID!
     userId: ID!
-    timestamp: Date
+    datetime: Date!
     medicationName: String!
     dosage: String
   }
@@ -25,21 +25,14 @@ const typeDefs = gql`
   type SymptomLog {
     _id: ID!
     userId: ID!
-    date: Date
+    datetime: Date!
     symptomName: String!
-    severity: Int
+    severity: Int!
   }
 
   type Auth {
     token: ID!
     user: User
-  }
-
-  input UserData {
-    firstName: String!
-    lastName: String!
-    email: String!
-    password: String!
   }
 
   type Query {
@@ -58,23 +51,13 @@ const typeDefs = gql`
       password: String!
     ): Auth
     loginUser(email: String!, password: String!): Auth
-    addUserSymptom(symptom: String!): Auth
-    removeUserSymptom(symptom: String!): Auth
-    addUserMedication(medication: String!): Auth
-    removeUserMedication(medication: String!): Auth
-    addSymptomLog(
-      userId: ID!
-      date: Date!
-      symptomName: String!
-      severity: Int
-    ): SymptomLog
+    addUserSymptom(symptom: String!): User
+    removeUserSymptom(symptom: String!): User
+    addUserMedication(medication: String!): User
+    removeUserMedication(medication: String!): User
+    addSymptomLog(symptomName: String!, severity: Int!): SymptomLog
     deleteSymptomLog(logId: ID!): SymptomLog
-    addMedicationLog(
-      userId: ID!
-      timestamp: Date!
-      medicationName: String!
-      dosage: String
-    ): MedicationLog
+    addMedicationLog(medicationName: String!, dosage: String): MedicationLog
     deleteMedicationLog(logId: ID!): MedicationLog
   }
 `;

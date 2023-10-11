@@ -1,16 +1,24 @@
 import { gql } from "@apollo/client";
 
 export const ADD_USER = gql`
-  mutation addUser($input: UserData) {
-    addUser(input: $input) {
+  mutation addUser(
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $password: String!
+  ) {
+    addUser(
+      firstName: $firstName
+      lastName: $lastName
+      email: $email
+      password: $password
+    ) {
       token
       user {
         _id
         firstName
         lastName
         email
-        password
-        dob
         medications
         symptoms
       }
@@ -19,7 +27,7 @@ export const ADD_USER = gql`
 `;
 
 export const LOGIN_USER = gql`
-  mutation loginUser($email: String!, $password: String!) {
+  mutation login($email: String!, $password: String!) {
     loginUser(email: $email, password: $password) {
       token
       user {
@@ -27,8 +35,6 @@ export const LOGIN_USER = gql`
         firstName
         lastName
         email
-        password
-        dob
         medications
         symptoms
       }
@@ -40,22 +46,14 @@ export const LOGIN_USER = gql`
 export const ADD_USER_SYMPTOM = gql`
   mutation addUserSymptom($symptom: String!) {
     addUserSymptom(symptom: $symptom) {
-      token
-      user {
-        _id
-        symptoms
-      }
+      symptoms
     }
   }
 `;
 export const REMOVE_USER_SYMPTOM = gql`
   mutation removeUserSymptom($symptom: String!) {
     removeUserSymptom(symptom: $symptom) {
-      token
-      user {
-        _id
-        symptoms
-      }
+      symptoms
     }
   }
 `;
@@ -64,22 +62,14 @@ export const REMOVE_USER_SYMPTOM = gql`
 export const ADD_USER_MEDICATION = gql`
   mutation addUserMedication($medication: String!) {
     addUserMedication(medication: $medication) {
-      token
-      user {
-        _id
-        medications
-      }
+      medications
     }
   }
 `;
 export const REMOVE_USER_MEDICATION = gql`
-  mutation removeUserMedication($medication: String!) {
+  mutation Mutation($medication: String!) {
     removeUserMedication(medication: $medication) {
-      token
-      user {
-        _id
-        medications
-      }
+      medications
     }
   }
 `;

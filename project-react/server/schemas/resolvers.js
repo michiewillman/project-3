@@ -51,8 +51,8 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, UserData) => {
-      const user = await User.create(UserData);
+    addUser: async (parent, userData) => {
+      const user = await User.create({ ...userData });
       const token = signToken(user);
 
       return { token, user };
@@ -95,7 +95,7 @@ const resolvers = {
       if (context.user) {
         const user = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { medications: { medication } } },
+          { $pull: { medications: medication } },
           { new: true }
         );
 
@@ -124,7 +124,7 @@ const resolvers = {
       if (context.user) {
         const user = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { symptoms: { symptom } } },
+          { $pull: { symptoms: symptom } },
           { new: true }
         );
 
@@ -135,26 +135,21 @@ const resolvers = {
     },
 
     // Symptom Logs for a specific user
-    addSymptomLog: async (parent, { userId, date, symptomName, severity }) => {
-      return SymptomLog.create({
-        userId,
-        date,
-        symptomName,
-        severity,
-      });
+    addSymptomLog: async (parent, { symptomName, severity }, context) => {
+      if (context.user) {
+        return SymptomLog.create(
+          { userId: context.user._id },
+          { symptomName, severity }
+        );
+      }
     },
     deleteSymptomLog: async (parent, { logId }) => {
       return SymptomLog.findOneAndDelete({ _id: logId });
     },
 
     // Medication logs for a specific user
-    addMedicationLog: async (
-      parent,
-      { userId, timestamp, medicationName, dosage }
-    ) => {
+    addMedicationLog: async (parent, { medicationName, dosage }, context) => {
       return MedicationLog.create({
-        userId,
-        timestamp,
         medicationName,
         dosage,
       });

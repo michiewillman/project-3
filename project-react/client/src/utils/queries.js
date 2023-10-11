@@ -7,8 +7,6 @@ export const QUERY_USERS = gql`
       firstName
       lastName
       email
-      password
-      dob
       medications
       symptoms
     }
@@ -22,8 +20,6 @@ export const QUERY_SINGLE_USER = gql`
       firstName
       lastName
       email
-      password
-      dob
       medications
       symptoms
     }
@@ -37,8 +33,6 @@ export const QUERY_ME = gql`
       firstName
       lastName
       email
-      password
-      dob
       medications
       symptoms
     }

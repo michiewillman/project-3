@@ -11,7 +11,6 @@ const app = express();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  // Tell the server to go through any middleware first
   context: authMiddleware,
 });
 
@@ -23,11 +22,11 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+  res.sendFile(path.join(__dirname, "../client/public/"));
 });
 
 // Create a new instance of an Apollo server with the GraphQL schema
-const startApolloServer = async () => {
+const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
   // Pass the middleware to Apollo
   server.applyMiddleware({ app });

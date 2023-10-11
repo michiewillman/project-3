@@ -31,5 +31,11 @@
     "dob": "Fri Jun 17 2022 11:27:28 GMT+0100",
     "medications": ["imuran"],
     "symptoms": ["Shortness of Breath", "General fatigue"]
+  },
+  {
+    "firstName": "Michie",
+    "lastName": "Willman",
+    "email": "contact@michiewillman.com",
+    "password": "mutationstation"
   }
 ]
