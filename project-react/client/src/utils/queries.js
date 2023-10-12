@@ -40,7 +40,7 @@ export const QUERY_ME = gql`
 `;
 
 export const QUERY_MEDICATION_LOGS = gql`
-  query getMedicationLogs($datetime: String!) {
+  query medicationLogs($datetime: String!) {
     medicationLogs(datetime: $datetime) {
       _id
       userId
@@ -52,10 +52,11 @@ export const QUERY_MEDICATION_LOGS = gql`
 `;
 
 export const QUERY_SYMPTOM_LOGS = gql`
-  query getSymptomLogs($userId: ID!, $timestamp: Date) {
-    symptomLogs(userId: $userId, timestamp: $timestamp) {
+  query symptomLogs($datetime: String!) {
+    symptomLogs(datetime: $datetime) {
       _id
-      date
+      userId
+      datetime
       symptomName
       severity
     }
