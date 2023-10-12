@@ -1,27 +1,22 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import styles from "./ButtonStyles.js";
 
-const PrimaryButton = ({ text, action }) => {
+export const PrimaryButton = ({ text, action }) => {
   return (
     <div>
-      <Link>
-        <button className="primaryButton" onClick={action}>
-          {text}
-        </button>
-      </Link>
+      <button onClick={action} style={styles.primaryButton}>
+        {text}
+      </button>
     </div>
   );
 };
 
-const SecondaryButton = ({ text, action }) => {
+export const SecondaryButton = ({ text, action }) => {
   return (
     <div>
-      <Link>
-        <button className="secondaryButton" onClick={action}>
-          {text}
-        </button>
-      </Link>
+      <button onClick={action} style={styles.secondaryButton}>
+        {text}
+      </button>
     </div>
   );
 };
-
-export default { PrimaryButton, SecondaryButton };

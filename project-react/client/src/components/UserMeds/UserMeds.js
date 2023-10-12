@@ -1,7 +1,7 @@
 import React from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_MEDICATION_LOG } from "../../utils/mutations";
-import SecondaryButton from "../../components/Button/Button";
+import { SecondaryButton } from "../../components/Button/Button";
 // Use global User context
 import { useUserContext } from "../../utils/UserContext";
 

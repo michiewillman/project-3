@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ApolloClient,
   InMemoryCache,
@@ -12,7 +12,8 @@ import "./App.css";
 // Pass user context down to all children in App
 import UserProvider from "./utils/UserContext";
 
-// Pages
+// Page Components
+import Entry from "./pages/Entry/entry";
 import Signup from "./pages/Signup/Signup";
 import Login from "./pages/Login/Login";
 import Dashboard from "./pages/Dashboard/Dashboard";
@@ -53,14 +54,16 @@ function App() {
               {isLoggedIn ? (
                 <Routes>
                   <Route path="/" element={<Dashboard />} />
-                  <Route path="/signup" element={<Signup />} />
                   <Route path="/account" element={<MyAccount />} />
                   {/* <Route path="/login" element={<Logout />} /> */}
+                  <Route path="*" element={<h1>404: Page Not Found</h1>} />
                 </Routes>
               ) : (
                 <Routes>
+                  <Route path="/" element={<Entry />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/signup" element={<Signup />} />
+                  <Route path="*" element={<h1>404: Page Not Found</h1>} />
                 </Routes>
               )}
             </div>
