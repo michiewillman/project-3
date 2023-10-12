@@ -41,6 +41,8 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const [isLoggedIn, setLoggedIn] = useState(false);
+
   return (
     <ApolloProvider client={client}>
       <UserProvider>
@@ -48,12 +50,19 @@ function App() {
           <div className="flex-column justify-flex-start min-100-vh">
             <Header />
             <div className="container">
-              <Routes>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/account" element={<MyAccount />} />
-              </Routes>
+              {isLoggedIn ? (
+                <Routes>
+                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/signup" element={<Signup />} />
+                  <Route path="/account" element={<MyAccount />} />
+                  {/* <Route path="/login" element={<Logout />} /> */}
+                </Routes>
+              ) : (
+                <Routes>
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/signup" element={<Signup />} />
+                </Routes>
+              )}
             </div>
             <Footer />
           </div>
