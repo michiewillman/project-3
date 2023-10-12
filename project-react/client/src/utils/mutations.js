@@ -76,22 +76,12 @@ export const REMOVE_USER_MEDICATION = gql`
 
 // Symptom Log entries in its own collection
 export const ADD_SYMPTOM_LOG = gql`
-  mutation addSymptomLog(
-    $userId: ID!
-    $date: Date!
-    $symptomName: String!
-    $severity: Int
-  ) {
-    addSymptomLog(
-      userId: $userId
-      date: $date
-      symptomName: $symptomName
-      severity: $severity
-    ) {
+  mutation AddSymptomLog($symptomName: String!, $severity: Int!) {
+    addSymptomLog(symptomName: $symptomName, severity: $severity) {
       _id
       userId
+      datetime
       symptomName
-      date
       severity
     }
   }
@@ -107,21 +97,11 @@ export const DELETE_SYMPTOM_LOG = gql`
 
 // Medication Log entries in its own collection
 export const ADD_MEDICATION_LOG = gql`
-  mutation addMedicationLog(
-    $userId: ID!
-    $timestamp: Date!
-    $medicationName: String!
-    $dosage: String
-  ) {
-    addMedicationLog(
-      userId: $userId
-      timestamp: $timestamp
-      medicationName: $medicationName
-      dosage: $dosage
-    ) {
+  mutation addMedicationLog($medicationName: String!, $dosage: String) {
+    addMedicationLog(medicationName: $medicationName, dosage: $dosage) {
       _id
       userId
-      timestamp
+      datetime
       medicationName
       dosage
     }

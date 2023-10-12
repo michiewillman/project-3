@@ -1,28 +1,35 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { GraphQLScalarType, Kind } = require("graphql");
+// const { GraphQLScalarType, Kind } = require("graphql");
 const { User, MedicationLog, SymptomLog } = require("../models");
 const { signToken } = require("../utils/auth");
+const formatDate = require("../utils/formatDate");
 
 const resolvers = {
-  Date: new GraphQLScalarType({
-    name: "Date",
-    description: "Custom Date scalar type",
-    parseValue(value) {
-      // Convert the incoming date string or timestamp to a JavaScript Date object
-      return new Date(value);
-    },
-    serialize(value) {
-      // Convert the JavaScript Date object to a string for output
-      return value.toISOString();
-    },
-    parseLiteral(ast) {
-      // Parse a date string from the GraphQL query AST
-      if (ast.kind === Kind.STRING) {
-        return new Date(ast.value);
-      }
-      return null;
-    },
-  }),
+  // Date: new GraphQLScalarType({
+  //   name: "Date",
+  //   description: "Custom Date scalar type",
+  //   parseValue(value) {
+  //     // Convert the incoming date string or timestamp to a JavaScript Date object
+  //     return new Date(value);
+  //   },
+  //   // serialize(value) {
+  //   //   // Convert the JavaScript Date object to a string for output
+  //   //   return value.toISOString();
+  //   // },
+  //   serialize(value) {
+  //     if (value instanceof Date) {
+  //       return value.toISOString();
+  //     }
+  //     return console.log("Date is a ", value.typeof); // Or handle other cases as needed
+  //   },
+  //   parseLiteral(ast) {
+  //     // Parse a date string from the GraphQL query AST
+  //     if (ast.kind === Kind.STRING) {
+  //       return new Date(ast.value);
+  //     }
+  //     return null;
+  //   },
+  // }),
 
   Query: {
     // All Users
@@ -41,12 +48,32 @@ const resolvers = {
       throw new AuthenticationError("Log in or create an account.");
     },
     // ---  Logged in User's Medications for a specific day ---
-    medicationLogs: async (parent, { userId, currentTime }) => {
-      return MedicationLog.findOne({ _id: userId, date: currentTime });
+    medicationLogs: async (parent, { datetime }, context) => {
+      const startOfDay = new Date(datetime);
+      startOfDay.setHours(0, 0, 0, 0);
+      const endOfDay = new Date(datetime);
+      endOfDay.setHours(23, 59, 59, 999);
+
+      const medLogs = await MedicationLog.find({
+        userId: context.user._id,
+        datetime: { $gte: startOfDay, $lt: endOfDay },
+      });
+
+      return medLogs;
     },
     // ---  Logged in User's Symptoms ---
-    symptomLogs: async (parent, { userId, currentDate }) => {
-      return SymptomLog.findOne({ _id: userId, date: currentDate });
+    symptomLogs: async (parent, { datetime }, context) => {
+      const startOfDay = new Date(datetime);
+      startOfDay.setHours(0, 0, 0, 0);
+      const endOfDay = new Date(datetime);
+      endOfDay.setHours(23, 59, 59, 999);
+
+      const symptomLogs = await SymptomLog.find({
+        userId: context.user._id,
+        datetime: { $gte: startOfDay, $lt: endOfDay },
+      });
+
+      return symptomLogs;
     },
   },
 
@@ -139,7 +166,6 @@ const resolvers = {
       if (context.user) {
         return SymptomLog.create({
           userId: context.user._id,
-          datetime: new Date(),
           symptomName,
           severity,
         });
@@ -157,7 +183,6 @@ const resolvers = {
       if (context.user) {
         return MedicationLog.create({
           userId: context.user._id,
-          datetime: new Date(),
           medicationName,
           dosage,
         });

@@ -14,7 +14,6 @@ const symptomLogSchema = new Schema({
     type: Date,
     default: Date.now,
     get: (timestamp) => formatDate(timestamp),
-    required: true,
   },
   symptomName: {
     type: String,

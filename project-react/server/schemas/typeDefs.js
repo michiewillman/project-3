@@ -17,7 +17,7 @@ const typeDefs = gql`
   type MedicationLog {
     _id: ID!
     userId: ID!
-    datetime: Date!
+    datetime: String!
     medicationName: String!
     dosage: String
   }
@@ -25,7 +25,7 @@ const typeDefs = gql`
   type SymptomLog {
     _id: ID!
     userId: ID!
-    datetime: Date!
+    datetime: String!
     symptomName: String!
     severity: Int!
   }
@@ -39,8 +39,8 @@ const typeDefs = gql`
     users: [User]
     user(userId: ID!): User
     me: User
-    medicationLogs(userId: ID!, date: Date): [MedicationLog]
-    symptomLogs(userId: ID!, timestamp: Date): [SymptomLog]
+    medicationLogs(datetime: String!): [MedicationLog]
+    symptomLogs(datetime: String!): [SymptomLog]
   }
 
   type Mutation {

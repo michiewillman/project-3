@@ -14,7 +14,6 @@ const medicationLogSchema = new Schema({
     type: Date,
     default: Date.now,
     get: (timestamp) => formatDate(timestamp),
-    required: true,
   },
   medicationName: {
     type: String,
