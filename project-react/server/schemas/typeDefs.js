@@ -39,8 +39,8 @@ const typeDefs = gql`
     users: [User]
     user(userId: ID!): User
     me: User
-    medicationLogs(datetime: String!): [MedicationLog]
-    symptomLogs(datetime: String!): [SymptomLog]
+    getMedicationLogs(datetime: String!): [MedicationLog]
+    getSymptomLogs(datetime: String!): [SymptomLog]
   }
 
   type Mutation {
