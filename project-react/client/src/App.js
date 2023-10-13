@@ -67,7 +67,12 @@ function App() {
             ) : (
               <Routes>
                 <Route path="/" element={<Entry />} />
-                <Route path="/login" element={<Login />} />
+                <Route
+                  path="/login"
+                  element={
+                    <Login loggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />
+                  }
+                />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/account" element={<Login />} />
                 <Route

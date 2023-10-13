@@ -6,8 +6,9 @@ import { Link } from "react-router-dom";
 import Auth from "../../utils/auth";
 // Global styles
 import { themeStyles } from "../../themeStyles";
+import { PrimaryButton } from "../../components/Button/Button";
 
-const Login = (props) => {
+const Login = ({ isLoggedIn, setLoggedIn }) => {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
@@ -68,9 +69,7 @@ const Login = (props) => {
                   value={formState.password}
                   onChange={changeState}
                 />
-                <button className="" type="submit">
-                  Submit
-                </button>
+                <PrimaryButton text="Submit" type="Submit" />
                 <p>Not already registered?</p>
                 <Link to="/signup">Sign up</Link>
               </form>

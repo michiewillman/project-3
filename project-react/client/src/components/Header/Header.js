@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import "./Header.css";
 import Auth from "../../utils/auth";
+import { SecondaryButton } from "../../components/Button/Button";
 
 const Header = () => {
   const logout = (event) => {
@@ -17,9 +18,7 @@ const Header = () => {
               <Link className="" to="/account">
                 View My Account
               </Link>
-              <button className="" onClick={logout}>
-                Logout
-              </button>
+              <SecondaryButton text="Submit" action={logout} />
             </>
           ) : (
             <>

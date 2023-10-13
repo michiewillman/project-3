@@ -10,9 +10,9 @@ export const PrimaryButton = ({ text, action, type }) => {
   );
 };
 
-export const SecondaryButton = ({ text, action }) => {
+export const SecondaryButton = ({ text, action, type }) => {
   return (
-    <Button onClick={action} sx={styles.secondaryButton}>
+    <Button onClick={action} sx={styles.secondaryButton} type={type}>
       {text}
     </Button>
   );
