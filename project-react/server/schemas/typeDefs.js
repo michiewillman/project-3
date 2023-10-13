@@ -50,7 +50,7 @@ const typeDefs = gql`
       email: String!
       password: String!
     ): Auth
-    loginUser(email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
     addUserSymptom(symptom: String!): User
     removeUserSymptom(symptom: String!): User
     addUserMedication(medication: String!): User

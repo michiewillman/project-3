@@ -4,12 +4,16 @@ import { QUERY_ME } from "../../utils/queries";
 import { ADD_SYMPTOM_LOG } from "../../utils/mutations";
 import SymptomLogList from "../../components/SymptomLogList/SymptomLogList";
 import MedicationLogList from "../../components/MedicationLogList/MedicationLogList";
-import PrimaryButton from "../../components/Button/Button";
+import { PrimaryButton } from "../../components/Button/Button";
 import UserMeds from "../../components/UserMeds/UserMeds";
+import Calendar from "../../components/Calendar/Calendar";
 
-// import { useState } from "react";
-// import { date, setDate } from "../../utils/DateContext";
-// import { user, setUser } from "../../utils/UserContext";
+// Set up Date library adapter for calendar
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+
+// Global styles
+import { themeStyles } from "../../themeStyles";
 
 //   {/* Set icon image to interaact with the severity chosen (ex: create an array of objects and the index corresponds to the icon --> then set the range values to correspond, or use switch case? ) */}
 //   <Text>{range}</Text>
@@ -54,19 +58,22 @@ const Dashboard = () => {
   }
   return (
     <main>
-      {loading ? (
-        <div>Loading...</div>
-      ) : (
-        <div>
-          {/* <MedicationLogList /> */}
-          <p>Take Your Medicine</p>
-          {/* <UserMeds medications={user.medications} /> */}
-          {/* <PrimaryButton text={"Add Medication"} action={handleLogSymptom} /> */}
-          <p>Symptoms</p>
-          {/* <SymptomLogList symptoms={user.symptoms} /> */}
-          {/* <PrimaryButton text={"Log Symptom"} action={handleLogSymptom} /> */}
-        </div>
-      )}
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        {loading ? (
+          <div>Loading...</div>
+        ) : (
+          <div>
+            <Calendar />
+            <MedicationLogList />
+            <p style={themeStyles.text}>Take Your Medicine</p>
+            <UserMeds medications={user.medications} />
+            <PrimaryButton text={"Add Medication"} action={handleLogSymptom} />
+            <p style={themeStyles.text}>Symptoms</p>
+            <SymptomLogList symptoms={user.symptoms} />
+            <PrimaryButton text={"Log Symptom"} action={handleLogSymptom} />
+          </div>
+        )}
+      </LocalizationProvider>
     </main>
   );
 };

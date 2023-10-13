@@ -1,22 +1,19 @@
 // import { Link } from "react-router-dom";
-import styles from "./ButtonStyles.js";
+import styles from "./ButtonStyles.css";
+import Button from "@mui/material/Button";
 
-export const PrimaryButton = ({ text, action }) => {
+export const PrimaryButton = ({ text, action, type }) => {
   return (
-    <div>
-      <button onClick={action} style={styles.primaryButton}>
-        {text}
-      </button>
-    </div>
+    <Button onClick={action} style={styles.primaryButton} type={type}>
+      {text}
+    </Button>
   );
 };
 
 export const SecondaryButton = ({ text, action }) => {
   return (
-    <div>
-      <button onClick={action} style={styles.secondaryButton}>
-        {text}
-      </button>
-    </div>
+    <Button onClick={action} sx={styles.secondaryButton}>
+      {text}
+    </Button>
   );
 };

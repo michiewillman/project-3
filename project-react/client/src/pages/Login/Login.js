@@ -4,8 +4,8 @@ import { LOGIN_USER } from "../../utils/mutations";
 import { Link } from "react-router-dom";
 // Authorization middleware
 import Auth from "../../utils/auth";
-// Styles
-import "./Login.css";
+// Global styles
+import { themeStyles } from "../../themeStyles";
 
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: "", password: "" });
@@ -24,12 +24,12 @@ const Login = (props) => {
   // Handle form submissions
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    // console.log(formState);
     try {
       const { data } = await login({
         variables: { ...formState },
       });
-
+      console.log("Data after login:", data);
       Auth.login(data.login.token);
     } catch (e) {
       console.error(e);
@@ -46,7 +46,7 @@ const Login = (props) => {
     <main>
       <div>
         <div>
-          <h4>Login</h4>
+          <h4 style={themeStyles.headline}>Login</h4>
           <div>
             {data ? (
               <p>Success!</p>

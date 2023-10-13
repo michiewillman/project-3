@@ -8,9 +8,9 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Global styles
-import "./App.css";
+import { themeStyles } from "./themeStyles.js";
 // Pass user context down to all children in App
-import UserProvider from "./utils/UserContext";
+// import UserProvider from "./utils/UserContext";
 
 // Page Components
 import Entry from "./pages/Entry/entry";
@@ -46,31 +46,43 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-      <UserProvider>
-        <Router>
-          <div className="flex-column justify-flex-start min-100-vh">
-            <Header />
-            <div className="container">
-              {isLoggedIn ? (
-                <Routes>
-                  <Route path="/" element={<Dashboard />} />
-                  <Route path="/account" element={<MyAccount />} />
-                  {/* <Route path="/login" element={<Logout />} /> */}
-                  <Route path="*" element={<h1>404: Page Not Found</h1>} />
-                </Routes>
-              ) : (
-                <Routes>
-                  <Route path="/" element={<Entry />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/signup" element={<Signup />} />
-                  <Route path="*" element={<h1>404: Page Not Found</h1>} />
-                </Routes>
-              )}
-            </div>
-            <Footer />
+      {/* Keeps track of the user global state */}
+      {/* <UserProvider> */}
+      <Router>
+        <div>
+          <Header />
+          <div className="container">
+            {isLoggedIn ? (
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/account" element={<MyAccount />} />
+                {/* <Route path="/login" element={<Logout />} /> */}
+                <Route
+                  path="*"
+                  element={
+                    <h1 style={themeStyles.title}>404: Page Not Found</h1>
+                  }
+                />
+              </Routes>
+            ) : (
+              <Routes>
+                <Route path="/" element={<Entry />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/account" element={<Login />} />
+                <Route
+                  path="*"
+                  element={
+                    <h1 style={themeStyles.title}>404: Page Not Found</h1>
+                  }
+                />
+              </Routes>
+            )}
           </div>
-        </Router>
-      </UserProvider>
+          <Footer />
+        </div>
+      </Router>
+      {/* </UserProvider> */}
     </ApolloProvider>
   );
 }

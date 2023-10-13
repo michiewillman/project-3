@@ -1,11 +1,12 @@
 import React from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../../utils/queries";
 // User authentication
 import Auth from "../../utils/auth";
-// Use global User context
-// import { useUserContext } from "../utils/ThemeContext";
+// Global styles
+import { themeStyles } from "../../themeStyles";
+import { PrimaryButton } from "../../components/Button/Button";
 
 const MyAccount = () => {
   // Get logged in user's data
@@ -25,15 +26,24 @@ const MyAccount = () => {
   }
 
   if (!user?.name) {
-    return <h4>Signup or login.</h4>;
+    return (
+      <div>
+        <h4 style={themeStyles.headline}>Signup or login.</h4>
+        <Link to="/login">
+          <PrimaryButton text="Login" />
+        </Link>
+      </div>
+    );
   }
 
   return (
     <div>
-      <p>First name</p>
-      <p>Last name</p>
-      <p>Email</p>
-      <p>Medications</p>
+      <p themeStyles>Information on file</p>
+      <p>First name: {user.firstName}</p>
+      <p>Last name: {user.lastName}</p>
+      <p>Email: {user.email}</p>
+      <p>Medications {user.medications}</p>
+      <p>Reported symptoms {user.symptoms}</p>
     </div>
   );
 };

@@ -5,7 +5,11 @@ import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../utils/mutations";
 // User authentication middleware
 import Auth from "../../utils/auth";
-import Home from "../Dashboard/Dashboard";
+import Dashboard from "../Dashboard/Dashboard";
+// Global styles
+import { themeStyles } from "../../themeStyles";
+import { PrimaryButton } from "../../components/Button/Button";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
   const [formState, setFormState] = useState({
@@ -13,7 +17,6 @@ const Signup = () => {
     lastName: "",
     email: "",
     password: "",
-    dob: "",
   });
 
   const [addUser, { error, data }] = useMutation(ADD_USER);
@@ -43,54 +46,50 @@ const Signup = () => {
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="">Create An Account</h4>
-          <div className="card-body">
+    <main>
+      <div>
+        <div className="">
+          <h4 style={themeStyles.headline}>Create An Account</h4>
+          <div className="">
             {data ? (
-              <Home />
+              <Dashboard />
             ) : (
               <form onSubmit={handleFormSubmit}>
                 <input
-                  className="form-input"
-                  placeholder="Choose a username"
-                  name="name"
+                  className="formInput"
+                  placeholder="first name"
+                  name="firstName"
                   type="text"
-                  value={formState.name}
+                  value={formState.firstName}
                   onChange={handleInputChange}
                 />
                 <input
-                  className="form-input"
-                  placeholder="Enter your email"
+                  className="formInput"
+                  placeholder="last name"
+                  name="lastName"
+                  type="text"
+                  value={formState.lastName}
+                  onChange={handleInputChange}
+                />
+                <input
+                  className="formInput"
+                  placeholder="email"
                   name="email"
                   type="email"
                   value={formState.email}
                   onChange={handleInputChange}
                 />
                 <input
-                  className="form-input"
+                  className="formInput"
                   placeholder="******"
                   name="password"
                   type="password"
                   value={formState.password}
                   onChange={handleInputChange}
                 />
-                <input
-                  className="form-input"
-                  placeholder="DD/MM/YYYY"
-                  name="dob"
-                  type="dob"
-                  value={formState.dob}
-                  onChange={handleInputChange}
-                />
-                <button
-                  className=""
-                  style={{ cursor: "pointer" }}
-                  type="submit"
-                >
-                  Submit
-                </button>
+                <Link to="/login">
+                  <PrimaryButton text="Submit" type="Submit" />
+                </Link>
               </form>
             )}
 
