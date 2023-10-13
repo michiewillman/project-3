@@ -6,11 +6,11 @@ import SymptomLogList from "../../components/SymptomLogList/SymptomLogList";
 import MedicationLogList from "../../components/MedicationLogList/MedicationLogList";
 import { PrimaryButton } from "../../components/Button/Button";
 import UserMeds from "../../components/UserMeds/UserMeds";
-import Calendar from "../../components/Calendar/Calendar";
+// import Calendar from "../../components/Calendar/Calendar";
 
 // Set up Date library adapter for calendar
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+// import { LocalizationProvider } from "@mui/x-date-pickers";
+// import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 // Global styles
 import { themeStyles } from "../../themeStyles";
@@ -58,22 +58,22 @@ const Dashboard = () => {
   }
   return (
     <main>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        {loading ? (
-          <div>Loading...</div>
-        ) : (
-          <div>
-            <Calendar />
-            <MedicationLogList />
-            <p style={themeStyles.text}>Take Your Medicine</p>
-            <UserMeds medications={user.medications} />
-            <PrimaryButton text={"Add Medication"} action={handleLogSymptom} />
-            <p style={themeStyles.text}>Symptoms</p>
-            <SymptomLogList symptoms={user.symptoms} />
-            <PrimaryButton text={"Log Symptom"} action={handleLogSymptom} />
-          </div>
-        )}
-      </LocalizationProvider>
+      {/* <LocalizationProvider dateAdapter={AdapterDayjs}> */}
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <div>
+          {/* <Calendar /> */}
+          <MedicationLogList />
+          <p style={themeStyles.text}>Take Your Medicine</p>
+          <UserMeds medications={user.medications} />
+          <PrimaryButton text={"Add Medication"} action={handleLogSymptom} />
+          <p style={themeStyles.text}>Symptoms</p>
+          <SymptomLogList symptoms={user.symptoms} />
+          <PrimaryButton text={"Log Symptom"} action={handleLogSymptom} />
+        </div>
+      )}
+      {/* </LocalizationProvider> */}
     </main>
   );
 };
