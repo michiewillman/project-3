@@ -7,6 +7,7 @@ import Auth from "../../utils/auth";
 // Global styles
 import { themeStyles } from "../../themeStyles";
 import { PrimaryButton } from "../Button/Button";
+import "./LoginForm.css";
 
 const LoginForm = (props) => {
   const [formState, setFormState] = useState({ email: "", password: "" });
@@ -52,6 +53,7 @@ const LoginForm = (props) => {
           <h4 style={themeStyles.headline}>Login</h4>
           <div>
             <form onSubmit={handleSubmit}>
+              <label for="email">Email</label>
               <input
                 className="form-input"
                 placeholder="Your email"
@@ -60,6 +62,7 @@ const LoginForm = (props) => {
                 value={formState.email}
                 onChange={changeState}
               />
+              <label for="password">Password</label>
               <input
                 className="form-input"
                 placeholder="******"
@@ -69,11 +72,11 @@ const LoginForm = (props) => {
                 onChange={changeState}
               />
               <PrimaryButton text="Submit" type="Submit" />
-              <p>Not already registered?</p>
-              <Link to="/signup">Sign up</Link>
             </form>
-            {error && <div className="">{error.message}</div>}
+            {error && <div className="submit-err">{error.message}</div>}
           </div>
+          <p>Not already registered?</p>
+          <Link to="/signup">Sign up</Link>
         </div>
       </div>
     </main>

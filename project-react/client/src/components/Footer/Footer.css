@@ -1,0 +1,14 @@
+footer {
+  background-color: #318798;
+  color: #98c3cc;
+  display: flex;
+}
+
+.btn-back {
+  background-color: #98c3cc;
+  color: #318798;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  border-style: none;
+}
