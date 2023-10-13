@@ -1,0 +1,10 @@
+.navlinks {
+  display: flex;
+  flex: flex-wrap;
+}
+
+.navitem {
+  font-family: "PT Serif", serif;
+  width: 50px;
+  padding: 10px 20px;
+}

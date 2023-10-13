@@ -32,9 +32,9 @@ const MedicationLogList = ({ userId }) => {
     <div>
       <h2>Medication Logs</h2>
       <div className="list-group">
-        {logs.map((log) => (
+        {/* {logs.map((log) => (
           <MedLogCard key={log._id} />
-        ))}
+        ))} */}
       </div>
     </div>
   );

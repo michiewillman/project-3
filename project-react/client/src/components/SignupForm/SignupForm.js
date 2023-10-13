@@ -5,13 +5,13 @@ import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../utils/mutations";
 // User authentication middleware
 import Auth from "../../utils/auth";
-import Dashboard from "../Dashboard/Dashboard";
+import Dashboard from "../../pages/Dashboard/Dashboard";
 // Global styles
 import { themeStyles } from "../../themeStyles";
-import { PrimaryButton } from "../../components/Button/Button";
+import { PrimaryButton } from "../Button/Button";
 import { Link } from "react-router-dom";
 
-const Signup = () => {
+const SignupForm = (props) => {
   const [formState, setFormState] = useState({
     firstName: "",
     lastName: "",
@@ -40,6 +40,8 @@ const Signup = () => {
       });
 
       Auth.login(data.addUser.token);
+
+      props.setLoggedIn(!props.isLoggedIn);
     } catch (error) {
       console.error(error);
     }
@@ -101,4 +103,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default SignupForm;

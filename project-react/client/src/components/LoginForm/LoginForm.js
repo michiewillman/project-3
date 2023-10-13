@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutations";
-import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 // Authorization middleware
 import Auth from "../../utils/auth";
 // Global styles
 import { themeStyles } from "../../themeStyles";
-import { PrimaryButton } from "../../components/Button/Button";
+import { PrimaryButton } from "../Button/Button";
 
-const Login = ({ isLoggedIn, setLoggedIn }) => {
+const LoginForm = (props) => {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
@@ -25,13 +25,15 @@ const Login = ({ isLoggedIn, setLoggedIn }) => {
   // Handle form submissions
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // console.log(formState);
+
     try {
       const { data } = await login({
         variables: { ...formState },
       });
       console.log("Data after login:", data);
       Auth.login(data.login.token);
+
+      props.setLoggedIn(!props.isLoggedIn);
     } catch (e) {
       console.error(e);
     }
@@ -49,32 +51,27 @@ const Login = ({ isLoggedIn, setLoggedIn }) => {
         <div>
           <h4 style={themeStyles.headline}>Login</h4>
           <div>
-            {data ? (
-              <p>Success!</p>
-            ) : (
-              <form onSubmit={handleSubmit}>
-                <input
-                  className="form-input"
-                  placeholder="Your email"
-                  name="email"
-                  type="email"
-                  value={formState.email}
-                  onChange={changeState}
-                />
-                <input
-                  className="form-input"
-                  placeholder="******"
-                  name="password"
-                  type="password"
-                  value={formState.password}
-                  onChange={changeState}
-                />
-                <PrimaryButton text="Submit" type="Submit" />
-                <p>Not already registered?</p>
-                <Link to="/signup">Sign up</Link>
-              </form>
-            )}
-
+            <form onSubmit={handleSubmit}>
+              <input
+                className="form-input"
+                placeholder="Your email"
+                name="email"
+                type="email"
+                value={formState.email}
+                onChange={changeState}
+              />
+              <input
+                className="form-input"
+                placeholder="******"
+                name="password"
+                type="password"
+                value={formState.password}
+                onChange={changeState}
+              />
+              <PrimaryButton text="Submit" type="Submit" />
+              <p>Not already registered?</p>
+              <Link to="/signup">Sign up</Link>
+            </form>
             {error && <div className="">{error.message}</div>}
           </div>
         </div>
@@ -83,4 +80,4 @@ const Login = ({ isLoggedIn, setLoggedIn }) => {
   );
 };
 
-export default Login;
+export default LoginForm;

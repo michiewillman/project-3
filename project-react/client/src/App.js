@@ -9,13 +9,13 @@ import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Global styles
 import { themeStyles } from "./themeStyles.js";
-// Pass user context down to all children in App
-// import UserProvider from "./utils/UserContext";
+
+import Auth from "./utils/auth.js";
 
 // Page Components
 import Entry from "./pages/Entry/entry";
-import Signup from "./pages/Signup/Signup";
-import Login from "./pages/Login/Login";
+import SignupForm from "./components/SignupForm/SignupForm.js";
+import LoginForm from "./components/LoginForm/LoginForm.js";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import MyAccount from "./pages/MyAccount/MyAccount";
 import Header from "./components/Header/Header";
@@ -52,7 +52,7 @@ function App() {
         <div>
           <Header />
           <div className="container">
-            {isLoggedIn ? (
+            {Auth.loggedIn() ? (
               <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/account" element={<MyAccount />} />
@@ -70,11 +70,13 @@ function App() {
                 <Route
                   path="/login"
                   element={
-                    <Login loggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />
+                    <LoginForm
+                      isLoggedIn={isLoggedIn}
+                      setLoggedIn={setLoggedIn}
+                    />
                   }
                 />
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/account" element={<Login />} />
+                <Route path="/signup" element={<SignupForm />} />
                 <Route
                   path="*"
                   element={
