@@ -25,15 +25,11 @@ const MedicationLogList = (props) => {
     }
   };
 
-  if (logData.length === 0) {
-    return <h3>You haven't logged anything today.</h3>;
-  }
+  // if (logData.length === 0) {
+  //   return <h3>You haven't logged anything today.</h3>;
+  // }
 
   // TODO: Update/add new medication to patient's medications array
-
-  if (loading) {
-    return <h2>LOADING...</h2>;
-  }
 
   return (
     <div className="my-2">
