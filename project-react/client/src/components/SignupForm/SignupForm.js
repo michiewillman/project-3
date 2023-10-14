@@ -58,7 +58,7 @@ const SignupForm = (props) => {
               <Dashboard />
             ) : (
               <form onSubmit={handleFormSubmit}>
-                <label for="firstName">First name</label>
+                <label htmlFor="firstName">First name</label>
                 <input
                   className="formInput"
                   placeholder="first name"
@@ -67,7 +67,7 @@ const SignupForm = (props) => {
                   value={formState.firstName}
                   onChange={handleInputChange}
                 />
-                <label for="lastName">Last name</label>
+                <label htmlFor="lastName">Last name</label>
                 <input
                   className="formInput"
                   placeholder="last name"
@@ -76,7 +76,7 @@ const SignupForm = (props) => {
                   value={formState.lastName}
                   onChange={handleInputChange}
                 />
-                <label for="email">Email address</label>
+                <label htmlFor="email">Email address</label>
                 <input
                   className="formInput"
                   placeholder="email"
@@ -85,7 +85,7 @@ const SignupForm = (props) => {
                   value={formState.email}
                   onChange={handleInputChange}
                 />
-                <label for="password">Password</label>
+                <label htmlFor="password">Password</label>
                 <input
                   className="formInput"
                   placeholder="******"

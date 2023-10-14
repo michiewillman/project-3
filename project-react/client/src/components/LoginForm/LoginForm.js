@@ -53,7 +53,7 @@ const LoginForm = (props) => {
           <h4 style={themeStyles.headline}>Login</h4>
           <div>
             <form onSubmit={handleSubmit}>
-              <label for="email">Email</label>
+              <label htmlFor="email">Email</label>
               <input
                 className="form-input"
                 placeholder="Your email"
@@ -62,7 +62,7 @@ const LoginForm = (props) => {
                 value={formState.email}
                 onChange={changeState}
               />
-              <label for="password">Password</label>
+              <label htmlFor="password">Password</label>
               <input
                 className="form-input"
                 placeholder="******"

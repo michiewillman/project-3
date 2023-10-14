@@ -1,14 +1,10 @@
 import { useMutation } from "@apollo/client";
 import { DELETE_MEDICATION_LOG } from "../../utils/mutations";
 
-const MedLogCard = (med) => {
+const MedLogCard = (props) => {
   const [deleteMedLog, { error }] = useMutation(DELETE_MEDICATION_LOG);
 
-  const { _id, medicationName, datetime, dosage } = med;
-
-  // const hours = getHours(datetime);
-  // const mins = getMinutes(datetime);
-  // const time = hours + mins
+  const { _id, name, dosage, time } = props;
 
   const handleDeleteLog = async (logId) => {
     try {
@@ -23,12 +19,12 @@ const MedLogCard = (med) => {
   return (
     <div className="med-log-card">
       {/* <input key={key}></input> */}
-      <p className="med-log-time">{datetime}</p>
-      <p className="med-log-name">{medicationName}</p>
+      <p className="med-log-time">{time}</p>
+      <p className="med-log-name">{name}</p>
       <p className="med-log-dosage">{dosage}</p>
       <button
         className="del-log-btn"
-        // onClick={() => handleDeleteLog(logId)}
+        onClick={() => handleDeleteLog(_id)}
       ></button>
     </div>
   );

@@ -91,6 +91,10 @@ export const DELETE_SYMPTOM_LOG = gql`
   mutation deleteSymptomLog($logId: ID!) {
     deleteSymptomLog(logId: $logId) {
       _id
+      userId
+      datetime
+      symptomName
+      severity
     }
   }
 `;
@@ -112,6 +116,10 @@ export const DELETE_MEDICATION_LOG = gql`
   mutation deleteMedicationLog($logId: ID!) {
     deleteMedicationLog(logId: $logId) {
       _id
+      userId
+      datetime
+      medicationName
+      dosage
     }
   }
 `;

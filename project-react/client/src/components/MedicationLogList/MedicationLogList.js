@@ -4,27 +4,33 @@ import { QUERY_MEDICATION_LOGS } from "../../utils/queries";
 import MedLogCard from "../MedLogCard/MedLogCard";
 // import spinner from "../../assets/Spin-1s-200px.gif";
 
-const MedicationLogList = ({ datetime }) => {
+const MedicationLogList = (props) => {
   // Get user's medications property (as array)
+  const { datetime } = props;
   const { loading, data } = useQuery(QUERY_MEDICATION_LOGS, {
     variables: { datetime },
   });
-  const logs = data?.user || {};
-  console.log("query of logs", logs);
+  const logData = data?.medicationLogs || [];
 
-  if (!logs.length) {
+  console.log(datetime);
+  console.log(logData);
+
+  if (logData.length === 0) {
     return <h3>You haven't logged anything today.</h3>;
   }
 
   // TODO: Update/add new medication to patient's medications array
 
+  if (loading) {
+    return <h2>LOADING...</h2>;
+  }
+
   return (
     <div className="my-2">
       <h2>Medication</h2>
-      <p>{logs}</p>
-      {logs.length ? (
+      {logData.length ? (
         <div className="flex-row">
-          {logs.map((log) => (
+          {logData.map((log) => (
             <MedLogCard
               key={log._id}
               name={log.medicationName}

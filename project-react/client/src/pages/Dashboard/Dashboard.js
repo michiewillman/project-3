@@ -37,7 +37,9 @@ import { themeStyles } from "../../themeStyles";
 
 const Dashboard = () => {
   const { loading, data } = useQuery(QUERY_ME);
-  const user = data?.user || [];
+  const user = data?.user || {};
+
+  const selectedDate = "2023-10-14";
 
   // Use the mutation to log the user's symptom
   const [addSymptomLog, { error }] = useMutation(ADD_SYMPTOM_LOG);
@@ -64,9 +66,9 @@ const Dashboard = () => {
       ) : (
         <div>
           {/* <Calendar /> */}
-          <MedicationLogList />
+          <MedicationLogList datetime={selectedDate} />
           <p style={themeStyles.text}>Take Your Medicine</p>
-          <UserMeds medications={user.medications} />
+          {/* <UserMeds medications={user.medications} /> */}
           <PrimaryButton text={"Add Medication"} action={handleLogSymptom} />
           <p style={themeStyles.text}>Symptoms</p>
           <SymptomLogList symptoms={user.symptoms} />
