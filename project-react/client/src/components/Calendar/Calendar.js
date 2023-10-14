@@ -32,7 +32,7 @@ function fakeFetch(date, { signal }) {
   });
 }
 
-const initialValue = dayjs("2022-04-17");
+const initialValue = dayjs();
 
 function ServerDay(props) {
   const { highlightedDays = [], day, outsideCurrentMonth, ...other } = props;
@@ -56,10 +56,11 @@ function ServerDay(props) {
   );
 }
 
-export default function DateCalendarServerRequest() {
+export default function DateCalendarServerRequest({ onDateSelected }) {
   const requestAbortController = React.useRef(null);
   const [isLoading, setIsLoading] = React.useState(false);
   const [highlightedDays, setHighlightedDays] = React.useState([1, 2, 15]);
+  const [selectedDate, setSelectedDate] = React.useState(dayjs());
 
   const fetchHighlightedDays = (date) => {
     const controller = new AbortController();
@@ -98,12 +99,20 @@ export default function DateCalendarServerRequest() {
     fetchHighlightedDays(date);
   };
 
+  const handleDateClick = (date) => {
+    setIsLoading(true);
+    setSelectedDate(date); // Update selected date
+    onDateSelected(date); // Callback to parent component
+    fetchHighlightedDays(date);
+  };
+
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DateCalendar
-        defaultValue={initialValue}
         loading={isLoading}
         onMonthChange={handleMonthChange}
+        value={selectedDate} // Pass the selectedDate as the value
+        onChange={handleDateClick} // Handle date selection
         renderLoading={() => <DayCalendarSkeleton />}
         slots={{
           day: ServerDay,
