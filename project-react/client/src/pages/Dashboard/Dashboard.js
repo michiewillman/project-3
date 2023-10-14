@@ -9,6 +9,7 @@ import Calendar from "../../components/Calendar/Calendar";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { themeStyles } from "../../themeStyles";
+import UserMeds from "../../components/UserMeds/UserMeds";
 
 const Dashboard = () => {
   const { loading, data } = useQuery(QUERY_ME);
@@ -24,9 +25,8 @@ const Dashboard = () => {
         <div>
           <Calendar onDateSelected={(date) => setSelectedDate(date)} />
           <MedicationLogList datetime={selectedDate} />
-          <p style={themeStyles.text}>Take Your Medicine</p>
+          <UserMeds med={user.medications} />
           {/* <PrimaryButton text={"Add Medication"} action={handleLogSymptom} /> */}
-          <p style={themeStyles.text}>Symptoms</p>
           <SymptomLogList datetime={selectedDate} />
           {/* <PrimaryButton text={"Log Symptom"} action={handleLogSymptom} /> */}
         </div>

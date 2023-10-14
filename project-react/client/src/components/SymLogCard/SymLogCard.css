@@ -1,0 +1,13 @@
+/* .symptomLogCard {
+
+} */
+
+.symptomLogName {
+  color: #d55669;
+  font-size: 30px;
+}
+
+.symptomLogSeverity {
+  color: #455054;
+  font-size: 24px;
+}

@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { PrimaryButton } from "../../components/Button/Button";
+import "./EntryScreen.css";
 
-const Entry = () => {
+const EntryScreen = () => {
   return (
-    <div>
+    <div className="entryScreen">
       <h1>MG Won't Stop Me</h1>
       <p>
         Being diagnosed with Myasthenia Gravis doesn't have to be the end of
@@ -22,4 +23,4 @@ const Entry = () => {
   );
 };
 
-export default Entry;
+export default EntryScreen;

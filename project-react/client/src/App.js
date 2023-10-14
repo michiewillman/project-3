@@ -8,18 +8,19 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Global styles
+import "./App.css";
 import { themeStyles } from "./themeStyles.js";
 
 import Auth from "./utils/auth.js";
 
 // Page Components
-import Entry from "./pages/Entry/entry";
 import SignupForm from "./components/SignupForm/SignupForm.js";
 import LoginForm from "./components/LoginForm/LoginForm.js";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import MyAccount from "./pages/MyAccount/MyAccount";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import EntryScreen from "./pages/EntryScreen/EntryScreen";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -66,7 +67,7 @@ function App() {
               </Routes>
             ) : (
               <Routes>
-                <Route path="/" element={<Entry />} />
+                <Route path="/" element={<EntryScreen />} />
                 <Route
                   path="/login"
                   element={

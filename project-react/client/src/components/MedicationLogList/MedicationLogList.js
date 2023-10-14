@@ -4,6 +4,8 @@ import { QUERY_MEDICATION_LOGS } from "../../utils/queries";
 import { DELETE_MEDICATION_LOG } from "../../utils/mutations";
 import MedLogCard from "../MedLogCard/MedLogCard";
 import Loading from "../Loading/Loading";
+import { PrimaryButton } from "../Button/Button";
+import AddMedLogForm from "../AddMedLogForm/AddMedLogForm";
 
 const MedicationLogList = (props) => {
   const [deleteMedicationLog, { error }] = useMutation(DELETE_MEDICATION_LOG);
@@ -50,8 +52,7 @@ const MedicationLogList = (props) => {
       ) : (
         <h3>You haven't added any medications yet.</h3>
       )}
-      {/* <button onClick={}></button> */}
-      {/* Button "Take Medication" renders the AddMedLogForm modal / component */}
+      <PrimaryButton text={"Take Medicine"} />
       <Loading loading={loading} />
     </div>
   );

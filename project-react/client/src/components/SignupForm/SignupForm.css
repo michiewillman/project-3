@@ -18,7 +18,7 @@
 
 input {
   border: 1px solid #d7d5d5;
-  border-radius: var(--border-radius);
+  border-radius: 15px;
   padding: 20px;
   height: 40px;
   width: 100%;
@@ -39,7 +39,7 @@ textarea:focus,
 input:focus,
 input[type]:focus,
 .uneditable-input:focus {
-  border-color: var(--secondary);
+  border-color: #e79d46;
   outline: none;
 }
 

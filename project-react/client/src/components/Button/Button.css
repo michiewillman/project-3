@@ -1,28 +1,31 @@
 .primaryButton {
-  color: #98c3cc;
-  background-color: #455054;
-  padding: 10px 30px;
+  color: #e8e9ed;
+  background-color: #e79d46;
+  border-style: none;
+  padding: 15px 30px;
   margin: 10px;
   border-radius: 20px;
 }
 
+.primaryButton:hover {
+  background: linear-gradient(135deg, #e79d46 0%, #d55669 100%);
+}
+
 .secondaryButton {
   color: #455054;
-  background-color: #98c3cc;
+  background-color: #e8e9ed;
+  border-style: none;
   padding: 10px;
   margin: 10px;
 }
 
 .delLogButton {
   color: #455054;
-  background-color: #98c3cc;
-  width: 57px;
-  height: 57px;
-  border-radius: 10px;
+  background-color: #ffffff;
   border-style: none;
   margin: 10px;
 }
 .delLogButton:hover {
   color: #455054;
-  background-color: #7fb8c4;
+  /* background-color: #7fb8c4; */
 }

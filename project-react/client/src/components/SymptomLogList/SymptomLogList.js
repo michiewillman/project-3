@@ -4,6 +4,8 @@ import { QUERY_SYMPTOM_LOGS } from "../../utils/queries";
 import { DELETE_SYMPTOM_LOG } from "../../utils/mutations";
 import SymLogCard from "../SymLogCard/SymLogCard";
 import Loading from "../Loading/Loading";
+import "./SymptomLogList.css";
+import { PrimaryButton } from "../Button/Button";
 
 const SymptomLogList = (props) => {
   const [deleteMedicationLog, { error }] = useMutation(DELETE_SYMPTOM_LOG);
@@ -20,7 +22,7 @@ const SymptomLogList = (props) => {
   // }
 
   return (
-    <div className="my-2">
+    <div className="flexContainer">
       <h2>Symptoms Logged Today</h2>
       {logData.length ? (
         <div className="flex-row">
@@ -36,6 +38,7 @@ const SymptomLogList = (props) => {
       ) : (
         <h3>You haven't logged any symptoms yet.</h3>
       )}
+      <PrimaryButton text={"Log Symptom"} />
       <Loading loading={loading} />
     </div>
   );

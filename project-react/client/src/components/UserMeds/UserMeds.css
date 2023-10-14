@@ -1,0 +1,24 @@
+.medContainer {
+  display: flex;
+  flex: wrap;
+}
+
+.medCard {
+  width: 100px;
+  height: 150px;
+  padding: 10px;
+  margin: 5px;
+  color: #f2f2f2;
+  background: linear-gradient(135deg, #e79d46 0%, #d55669 100%);
+  border-radius: 15px 50px 15px 15px;
+}
+
+.medName {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.medDose {
+  font-weight: 200;
+  font-size: 18px;
+}
