@@ -5,7 +5,7 @@ import { ADD_SYMPTOM_LOG } from "../../utils/mutations";
 import SymptomLogList from "../../components/SymptomLogList/SymptomLogList";
 import MedicationLogList from "../../components/MedicationLogList/MedicationLogList";
 import { PrimaryButton } from "../../components/Button/Button";
-import UserMeds from "../../components/UserMeds/UserMeds";
+// import UserMeds from "../../components/UserMeds/UserMeds";
 // import Calendar from "../../components/Calendar/Calendar";
 
 // Set up Date library adapter for calendar

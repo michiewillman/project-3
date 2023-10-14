@@ -1,21 +1,4 @@
 /* Forms - input and textarea */
-.login-card {
-  max-width: 400px;
-}
-
-.create-card {
-  max-width: 600px;
-}
-
-@media only screen and (min-width: 1000px) {
-  .item-card {
-    width: 50%;
-  }
-  .create-card {
-    width: 600px;
-  }
-}
-
 input {
   border: 1px solid #d7d5d5;
   border-radius: var(--border-radius);
@@ -30,7 +13,7 @@ input {
 }
 
 textarea {
-  width: 100%;
+  width: 90%;
   padding: 20px;
   border-radius: 25px;
 }

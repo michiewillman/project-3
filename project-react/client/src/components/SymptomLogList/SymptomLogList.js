@@ -5,7 +5,7 @@ import SymLogCard from "../SymLogCard/SymLogCard";
 
 // import spinner from "../../assets/Spin-1s-200px.gif";
 
-const MedicationLogList = (props) => {
+const SymptomLogList = (props) => {
   // Get user's symptoms property (as array)
   const { datetime } = props;
   const { loading, data } = useQuery(QUERY_SYMPTOM_LOGS, {
@@ -16,8 +16,6 @@ const MedicationLogList = (props) => {
   if (logData.length === 0) {
     return <h3>You haven't logged anything today.</h3>;
   }
-
-  // TODO: Update/add new medication to patient's symptoms array
 
   if (loading) {
     return <h2>LOADING...</h2>;
@@ -38,27 +36,10 @@ const MedicationLogList = (props) => {
           ))}
         </div>
       ) : (
-        <h3>You haven't added any medications yet.</h3>
+        <h3>You haven't logged any symptoms yet.</h3>
       )}
-      {/* <button onClick={}></button> */}
-      {/* Button "Take Medication" renders the AddMedLogForm modal / component */}
-      {/* {loading ? <img src={spinner} alt="loading" /> : null} */}
     </div>
   );
 };
 
-export default MedicationLogList;
-
-// Future Development code: REACT NATIVE CONFIRM
-//   Alert.alert("Confirm delete", "Are you sure you want to delete this log?", [
-//     {
-//       text: "Cancel",
-//       onPress: () => console.log("Cancel Pressed"),
-//       style: "cancel",
-//     },
-//     {
-//       text: "DELETE LOG",
-//       onPress: () => console.log("Delete pressed"),
-//     },
-//   ]);
-// };
+export default SymptomLogList;

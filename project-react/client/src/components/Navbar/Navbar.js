@@ -1,6 +1,5 @@
 import "./Navbar.css";
 import { Link } from "react-router-dom";
-import LoginForm from "../LoginForm/LoginForm";
 
 import Auth from "../../utils/auth";
 

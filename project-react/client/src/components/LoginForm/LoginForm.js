@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutations";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // Authorization middleware
 import Auth from "../../utils/auth";
 // Global styles
-import { themeStyles } from "../../themeStyles";
 import { PrimaryButton } from "../Button/Button";
+import { themeStyles } from "../../themeStyles";
 import "./LoginForm.css";
 
 const LoginForm = (props) => {

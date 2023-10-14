@@ -1,5 +1,5 @@
 // import { Link } from "react-router-dom";
-import styles from "./ButtonStyles.css";
+import styles from "./Button.css";
 // import Button from "@mui/material/Button";
 
 export const PrimaryButton = ({ text, action, type }) => {

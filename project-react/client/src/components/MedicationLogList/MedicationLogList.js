@@ -1,19 +1,29 @@
 // Use query to get graphQL data
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_MEDICATION_LOGS } from "../../utils/queries";
+import { DELETE_MEDICATION_LOG } from "../../utils/mutations";
 import MedLogCard from "../MedLogCard/MedLogCard";
-// import spinner from "../../assets/Spin-1s-200px.gif";
+import Loading from "../Loading/Loading";
 
 const MedicationLogList = (props) => {
-  // Get user's medications property (as array)
+  const [deleteMedicationLog, { error }] = useMutation(DELETE_MEDICATION_LOG);
+
+  // Get med logs from user from date passed in
   const { datetime } = props;
   const { loading, data } = useQuery(QUERY_MEDICATION_LOGS, {
     variables: { datetime },
   });
   const logData = data?.medicationLogs || [];
 
-  console.log(datetime);
-  console.log(logData);
+  const handleDeleteLog = async (logId) => {
+    try {
+      const { data } = await deleteMedicationLog({
+        variables: { _id: logId },
+      });
+    } catch (err) {
+      console.error("GraphQL Error: ", err);
+    }
+  };
 
   if (logData.length === 0) {
     return <h3>You haven't logged anything today.</h3>;
@@ -32,10 +42,12 @@ const MedicationLogList = (props) => {
         <div className="flex-row">
           {logData.map((log) => (
             <MedLogCard
-              key={log._id}
+              key={log._id + log.medicationName}
+              logId={log._id}
               name={log.medicationName}
               dosage={log.dosage}
               time={log.datetime}
+              handleDeleteLog={handleDeleteLog}
             />
           ))}
         </div>
@@ -44,7 +56,7 @@ const MedicationLogList = (props) => {
       )}
       {/* <button onClick={}></button> */}
       {/* Button "Take Medication" renders the AddMedLogForm modal / component */}
-      {/* {loading ? <img src={spinner} alt="loading" /> : null} */}
+      <Loading loading={loading} />
     </div>
   );
 };
