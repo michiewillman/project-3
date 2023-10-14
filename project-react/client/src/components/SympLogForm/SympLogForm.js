@@ -1,28 +1,39 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-import { ADD_MEDICATION_LOG } from "../../utils/mutations";
+import { ADD_SYMPTOM_LOG } from "../../utils/mutations";
 import { PrimaryButton, SecondaryButton } from "../Button/Button";
 
 import Auth from "../../utils/auth";
 
 const SympLogForm = (props) => {
-  const [newLog, setLog] = useState("");
+  const [formState, setFormState] = useState({ symptomName: "", severity: 0 });
 
-  const [addLog, { error }] = useMutation(ADD_MEDICATION_LOG);
+  const [addSymptomLog, { error }] = useMutation(ADD_SYMPTOM_LOG);
 
-  const handleFormSubmit = async (event) => {
+  // Update state change with input change
+  const changeState = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  const handleLogSymptom = async (event) => {
     event.preventDefault();
 
-    // try {
-    //   const data = await addLog({
-    //     variables: { userId, newLog },
-    //   });
+    try {
+      const data = await addSymptomLog({
+        variables: { ...formState },
+      });
 
-    //   setLog("");
-    // } catch (err) {
-    //   console.error(err);
-    // }
+      // Clear the form by resetting the state
+      setFormState({ symptomName: "", severity: 0 });
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -31,29 +42,27 @@ const SympLogForm = (props) => {
         <div className="relative w-full max-w-2xl max-h-full">
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <div className="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                {props.title}
-              </h3>
+              <h3>Log a Symptom</h3>
               <SecondaryButton text="Close" action={props.closeFunction} />
             </div>
             <div className="p-6 space-y-6">
-              <form className="" onSubmit={handleFormSubmit}>
+              <form className="" onSubmit={handleLogSymptom}>
                 <div className="col-12 col-lg-9">
-                  <label for="medicationName">Medication name</label>
+                  <label for="symptomName">Symptom</label>
                   <input
                     className="form-input"
-                    name="medicationName"
+                    name="symptomName"
                     type="text"
-                    value={newLog.medicationName}
-                    onChange={(event) => setLog(event.target.value)}
+                    value={formState.symptomName}
+                    onChange={(event) => changeState(event)}
                   />
-                  <label for="dosage">Dosage</label>
+                  <label for="severity">Severity</label>
                   <input
                     className="form-input"
-                    name="dosage"
-                    type="text"
-                    value={newLog.dosage}
-                    onChange={(event) => setLog(event.target.value)}
+                    name="severity"
+                    type="number"
+                    value={formState.severity}
+                    onChange={(event) => changeState(event)}
                   />
                 </div>
                 <PrimaryButton text="Submit" type="Submit" />

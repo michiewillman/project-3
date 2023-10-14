@@ -76,7 +76,7 @@ export const REMOVE_USER_MEDICATION = gql`
 
 // Symptom Log entries in its own collection
 export const ADD_SYMPTOM_LOG = gql`
-  mutation AddSymptomLog($symptomName: String!, $severity: Int!) {
+  mutation addSymptomLog($symptomName: String!, $severity: Int!) {
     addSymptomLog(symptomName: $symptomName, severity: $severity) {
       _id
       userId
