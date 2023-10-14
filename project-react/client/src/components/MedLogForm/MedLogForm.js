@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { ADD_MEDICATION_LOG } from "../../utils/mutations";
 
 import Auth from "../../utils/auth";
 
-const AddMedLogForm = ({ userId }) => {
+const AddMedLogForm = (props) => {
   const [newLog, setLog] = useState("");
 
   const [addLog, { error }] = useMutation(ADD_MEDICATION_LOG);

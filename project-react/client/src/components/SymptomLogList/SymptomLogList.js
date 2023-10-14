@@ -6,9 +6,19 @@ import SymLogCard from "../SymLogCard/SymLogCard";
 import Loading from "../Loading/Loading";
 import "./SymptomLogList.css";
 import { PrimaryButton } from "../Button/Button";
+import { useState } from "react";
+import SympLogForm from "../SympLogForm/SympLogForm";
 
 const SymptomLogList = (props) => {
+  // const [showModal, setShowModal] = useState(false);
+
   const [deleteMedicationLog, { error }] = useMutation(DELETE_SYMPTOM_LOG);
+
+  const [isShown, setIsShown] = useState(false);
+
+  const toggleModal = () => {
+    setIsShown(!isShown);
+  };
 
   // Get user's symptoms property (as array)
   const { datetime } = props;
@@ -38,7 +48,13 @@ const SymptomLogList = (props) => {
       ) : (
         <h3>You haven't logged any symptoms yet.</h3>
       )}
-      <PrimaryButton text={"Log Symptom"} />
+      <PrimaryButton text={"Log Symptom"} action={toggleModal} />
+      {isShown && (
+        <SympLogForm
+          closeFunction={toggleModal}
+          // You can pass other props here
+        />
+      )}
       <Loading loading={loading} />
     </div>
   );
