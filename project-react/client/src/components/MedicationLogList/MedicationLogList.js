@@ -50,7 +50,8 @@ const MedicationLogList = (props) => {
       {isShown && (
         <MedLogForm
           renderParent={renderParent}
-          toggleModal={toggleModal}
+          shown={isShown}
+          setIsShown={setIsShown}
           // can pass other props here
         />
       )}
