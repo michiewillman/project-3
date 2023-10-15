@@ -1,11 +1,9 @@
 import { useMutation } from "@apollo/client";
 import { DELETE_MEDICATION_LOG } from "../../utils/mutations";
+import firstToUppercase from "../../utils/firstToUppercase";
 import "../Button/Button.css";
 import "../Icons/Icons.css";
 import "./MedLogCard.css";
-import firstToUppercase from "../../utils/firstToUppercase";
-
-
 
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 

@@ -3,12 +3,14 @@
   background-color: #e79d46;
   border-style: none;
   padding: 15px 30px;
-  margin: 10px;
-  border-radius: 20px;
+  margin: 10px 0;
+  border-radius: 30px;
 }
 
 .primaryButton:hover {
   background: linear-gradient(135deg, #e79d46 0%, #d55669 100%);
+  box-shadow: 15px 13px 12px rgba(0, 0, 0, 0.02),
+    7px 6px 9px rgba(0, 0, 0, 0.03), 2px 1px 5px rgba(0, 0, 0, 0.03);
 }
 
 .secondaryButton {
@@ -20,19 +22,34 @@
 }
 
 .smallButton {
-  color: #d55669;
+  color: #7c8486;
+  font-size: 14px;
   background-color: #e8e9ed;
+  font-weight: 500;
   border-style: none;
-  padding: 5px 10px;
-  margin: 10px 0 0 0;
+  padding: 10px 15px;
+  width: 100%;
+  margin: 20px 0 0 0;
   border-radius: 8px;
+}
+
+.smallButton:hover {
+  color: #455054;
+  background-color: #e8e9ed;
+  box-shadow: inset 6px 8px 4px rgba(0, 0, 0, 0.01),
+    inset 3px 4px 3px rgba(0, 0, 0, 0.02), inset 1px 2px 2px rgba(0, 0, 0, 0.03),
+    inset 0px 0px 1px rgba(0, 0, 0, 0.04);
 }
 
 .delLogButton {
   color: #455054;
   border-style: none;
   padding: 5px;
+  position: relative;
+  top: 5px;
+  right: 5px;
 }
+
 .delLogButton:hover {
   color: #586062;
   background-color: #d2d9db;

@@ -12,10 +12,15 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "PT Serif", serif;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: #455054;
 }
 p {
   font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  color: #455054;
 }
 
 a {
@@ -25,8 +30,11 @@ a {
 .card {
   background-color: #e8e9ed;
   border-radius: 15px;
-  margin: 15px 10px;
-  padding: 5px 20px;
+  padding: 10px 30px;
+  margin: 15px 0;
   display: flex;
   flex: wrap;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100px;
 }

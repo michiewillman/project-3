@@ -2,6 +2,7 @@ import { SmallButton } from "../Button/Button";
 import "./UserMeds.css";
 import firstToUppercase from "../../utils/firstToUppercase";
 import Grid from "@mui/material/Grid"; // Grid version 1
+import AddBoxIcon from "@mui/icons-material/AddBox";
 
 const UserMeds = (props) => {
   const userMeds = props.medications;
@@ -10,9 +11,9 @@ const UserMeds = (props) => {
   return (
     <Grid>
       <div className="">
-        {userMeds.length ? (
-          <Grid container>
-            {userMeds.map((med, index) => (
+        <Grid container>
+          {userMeds.length &&
+            userMeds.map((med, index) => (
               <Grid key={med + index}>
                 <div className="medCard">
                   <p className="medName">{firstToUppercase(med)}</p>
@@ -20,10 +21,10 @@ const UserMeds = (props) => {
                 </div>
               </Grid>
             ))}
+          <Grid className="addMedCard">
+            <AddBoxIcon fontSize="large" className="addIcon"/>
           </Grid>
-        ) : (
-          <h3>No meds added. Add some now!</h3>
-        )}
+        </Grid>
       </div>
     </Grid>
   );

@@ -1,13 +1,15 @@
+/* .medLogCard {
+  padding: 10px 20px;
+} */
+
 .medLogTime {
-  color: #d55669;
-  font-size: 30px;
+  font-weight: 900;
+  font-size: 20px;
 }
 
 .medLogName {
-  color: #455054;
-  font-size: 24px;
+  font-weight: 500;
 }
 .medLogDosage {
-  color: #455054;
-  font-size: 20px;
+  font-weight: 300;
 }
