@@ -20,7 +20,7 @@
 }
 
 .smallButton {
-  color: #D55669;
+  color: #d55669;
   background-color: #e8e9ed;
   border-style: none;
   padding: 5px 10px;
@@ -30,11 +30,11 @@
 
 .delLogButton {
   color: #455054;
-  background-color: #ffffff;
   border-style: none;
-  margin: 10px;
+  padding: 5px;
 }
 .delLogButton:hover {
-  color: #455054;
-  /* background-color: #7fb8c4; */
+  color: #586062;
+  background-color: #d2d9db;
+  border-radius: 5px;
 }

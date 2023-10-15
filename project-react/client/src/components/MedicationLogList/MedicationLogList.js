@@ -35,7 +35,7 @@ const MedicationLogList = (props) => {
         <div className="flex-row">
           {logData.map((log) => (
             <MedLogCard
-              key={log}
+              key={log._id + log.medicationName}
               logId={log._id}
               name={log.medicationName}
               dosage={log.dosage}

@@ -1,25 +1,31 @@
 import { SmallButton } from "../Button/Button";
 import "./UserMeds.css";
+import firstToUppercase from "../../utils/firstToUppercase";
+import Grid from "@mui/material/Grid"; // Grid version 1
 
 const UserMeds = (props) => {
   const userMeds = props.medications;
   // console.log(userMeds);
 
   return (
-    <div className="medContainer">
-      {userMeds.length ? (
-        <div className="flex-row">
-          {userMeds.map((med, index) => (
-            <div key={med.name + index} className="medCard">
-              <p className="medName">{med}</p>
-              <SmallButton text={"Take Med"} />
-            </div>
-          ))}
-        </div>
-      ) : (
-        <h3>No meds added. Add some now!</h3>
-      )}
-    </div>
+    <Grid>
+      <div className="">
+        {userMeds.length ? (
+          <Grid container spacing={2}>
+            {userMeds.map((med, index) => (
+              <Grid key={med + index}>
+                <div className="medCard">
+                  <p className="medName">{firstToUppercase(med)}</p>
+                  <SmallButton text={"Take Med"} />
+                </div>
+              </Grid>
+            ))}
+          </Grid>
+        ) : (
+          <h3>No meds added. Add some now!</h3>
+        )}
+      </div>
+    </Grid>
   );
 };
 
