@@ -11,7 +11,7 @@ const UserMeds = (props) => {
     <Grid>
       <div className="">
         {userMeds.length ? (
-          <Grid container spacing={2}>
+          <Grid container>
             {userMeds.map((med, index) => (
               <Grid key={med + index}>
                 <div className="medCard">

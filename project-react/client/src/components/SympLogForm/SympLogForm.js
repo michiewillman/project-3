@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_SYMPTOM_LOG } from "../../utils/mutations";
-import { PrimaryButton, SecondaryButton } from "../Button/Button";
+import { PrimaryButton } from "../Button/Button";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import "./SympLogForm.css";
 
 import Auth from "../../utils/auth";
@@ -59,7 +60,7 @@ const SympLogForm = (props) => {
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <div className="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
               <h3>Log a Symptom</h3>
-              <SecondaryButton text="Close" action={toggleModal} />
+              <CloseOutlinedIcon onClick={toggleModal} />
             </div>
             <div className="p-6 space-y-6">
               <form onSubmit={handleLogSymptom}>
