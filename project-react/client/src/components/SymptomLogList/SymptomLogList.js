@@ -1,7 +1,6 @@
 // Use query to get graphQL data
-import { useQuery, useMutation } from "@apollo/client";
+import { useQuery} from "@apollo/client";
 import { QUERY_SYMPTOM_LOGS } from "../../utils/queries";
-import { DELETE_SYMPTOM_LOG } from "../../utils/mutations";
 import SymLogCard from "../SymLogCard/SymLogCard";
 import Loading from "../Loading/Loading";
 import "./SymptomLogList.css";

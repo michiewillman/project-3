@@ -41,7 +41,7 @@ const MedLogCard = (props) => {
         <p className="medLogDosage">{dosage}</p>
       </div>
       <div className="logRight">
-        <button className="delLogButton" onClick={handleDeleteLog}>
+        <button className="delLogButton" onClick={() => handleDeleteLog(props.logId)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="1em"

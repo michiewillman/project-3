@@ -6,7 +6,7 @@ import "./SymLogCard.css";
 import "../../App.css";
 
 const SymLogCard = (props) => {
-  const { name, severity } = props;
+  const { logId, name, severity } = props;
 
   const [deleteSymptomLog, { error }] = useMutation(DELETE_SYMPTOM_LOG);
 
@@ -28,10 +28,7 @@ const SymLogCard = (props) => {
         <p className="symptomLogSeverity">Severity: {severity}</p>
       </div>
       <div className="logRight">
-        <button
-          className="delLogButton"
-          onClick={() => handleDeleteLog(props.logId)}
-        >
+        <button className="delLogButton" onClick={() => handleDeleteLog(logId)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="1em"

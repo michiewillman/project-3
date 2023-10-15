@@ -16,3 +16,11 @@ export const SecondaryButton = ({ text, action, type }) => {
     </button>
   );
 };
+
+export const SmallButton = ({ text, action, type }) => {
+  return (
+    <button className="smallButton" onClick={action} type={type}>
+      {text}
+    </button>
+  );
+};

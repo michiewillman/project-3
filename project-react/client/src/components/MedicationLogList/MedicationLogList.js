@@ -1,13 +1,18 @@
 // Use query to get graphQL data
-import { useQuery, useMutation } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import { useState } from "react";
 import { QUERY_MEDICATION_LOGS } from "../../utils/queries";
-import { DELETE_MEDICATION_LOG } from "../../utils/mutations";
 import MedLogCard from "../MedLogCard/MedLogCard";
 import Loading from "../Loading/Loading";
 import { PrimaryButton } from "../Button/Button";
+import MedLogForm from "../MedLogForm/MedLogForm";
 
 const MedicationLogList = (props) => {
-  const [deleteMedicationLog, { error }] = useMutation(DELETE_MEDICATION_LOG);
+  const [isShown, setIsShown] = useState(false);
+
+  const toggleModal = () => {
+    setIsShown(!isShown);
+  };
 
   // Get med logs from user from date passed in
   const { datetime } = props;
@@ -16,21 +21,12 @@ const MedicationLogList = (props) => {
   });
   const logData = data?.medicationLogs || [];
 
-  const handleDeleteLog = async (logId) => {
-    try {
-      const { data } = await deleteMedicationLog({
-        variables: { _id: logId },
-      });
-    } catch (err) {
-      console.error("GraphQL Error: ", err);
-    }
+  const [listState, setListState] = useState(logData);
+
+  const renderParent = () => {
+    // setListState(listState);
+    console.log(listState);
   };
-
-  // if (logData.length === 0) {
-  //   return <h3>You haven't logged anything today.</h3>;
-  // }
-
-  // TODO: Update/add new medication to patient's medications array
 
   return (
     <div className="my-2">
@@ -39,19 +35,25 @@ const MedicationLogList = (props) => {
         <div className="flex-row">
           {logData.map((log) => (
             <MedLogCard
-              key={log._id + log.medicationName}
+              key={log._id + log.datetime}
               logId={log._id}
               name={log.medicationName}
               dosage={log.dosage}
               time={log.datetime}
-              handleDeleteLog={handleDeleteLog}
             />
           ))}
         </div>
       ) : (
         <h3>You haven't added any medications yet.</h3>
       )}
-      <PrimaryButton text={"Take Medicine"} />
+      <PrimaryButton text={"Take Medication"} action={toggleModal} />
+      {isShown && (
+        <MedLogForm
+          renderParent={renderParent}
+          toggleModal={toggleModal}
+          // can pass other props here
+        />
+      )}
       <Loading loading={loading} />
     </div>
   );

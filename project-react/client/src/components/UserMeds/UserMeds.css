@@ -4,9 +4,9 @@
 }
 
 .medCard {
-  width: 100px;
+  width: 150px;
   height: 150px;
-  padding: 10px;
+  padding: 20px;
   margin: 5px;
   color: #f2f2f2;
   background: linear-gradient(135deg, #e79d46 0%, #d55669 100%);
