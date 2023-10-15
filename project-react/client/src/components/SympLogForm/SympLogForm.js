@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_SYMPTOM_LOG } from "../../utils/mutations";
 import { PrimaryButton, SecondaryButton } from "../Button/Button";
+import "./SympLogForm.css";
 
 import Auth from "../../utils/auth";
 
@@ -47,14 +48,18 @@ const SympLogForm = (props) => {
     }
   };
 
+  const toggleModal = () => {
+    props.setIsShown(!props.shown);
+  };
+
   return (
-    <div className="logModal">
-      <div tabIndex="-1">
+    <div className="overlay">
+      <div className="logModal">
         <div className="relative w-full max-w-2xl max-h-full">
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <div className="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
               <h3>Log a Symptom</h3>
-              <SecondaryButton text="Close" action={props.closeFunction} />
+              <SecondaryButton text="Close" action={toggleModal} />
             </div>
             <div className="p-6 space-y-6">
               <form onSubmit={handleLogSymptom}>

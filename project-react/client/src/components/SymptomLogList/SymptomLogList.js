@@ -1,5 +1,5 @@
 // Use query to get graphQL data
-import { useQuery} from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { QUERY_SYMPTOM_LOGS } from "../../utils/queries";
 import SymLogCard from "../SymLogCard/SymLogCard";
 import Loading from "../Loading/Loading";
@@ -50,7 +50,8 @@ const SymptomLogList = (props) => {
       {isShown && (
         <SympLogForm
           renderParent={renderParent}
-          toggleModal={toggleModal}
+          shown={isShown}
+          setIsShown={setIsShown}
           // can pass other props here
         />
       )}
