@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { ADD_SYMPTOM_LOG } from "../../utils/mutations";
 import { PrimaryButton, SecondaryButton } from "../Button/Button";
@@ -24,9 +23,9 @@ const SympLogForm = (props) => {
   const handleLogSymptom = async (event) => {
     event.preventDefault();
 
+    // Get the userId for our mutation
     const user = Auth.getUser();
     const severityNum = Number(formState.severity);
-    console.log(severityNum);
 
     try {
       const data = await addSymptomLog({
@@ -39,6 +38,10 @@ const SympLogForm = (props) => {
 
       // Clear the form by resetting the state
       setFormState({ symptomName: "", severity: 0 });
+
+      const { renderParent, toggleModal } = props;
+      renderParent();
+      toggleModal();
     } catch (err) {
       console.error(err);
     }
@@ -74,11 +77,7 @@ const SympLogForm = (props) => {
                     onChange={(event) => handleInputChange(event)}
                   />
                 </div>
-                <PrimaryButton
-                  text="Submit"
-                  type="Submit"
-                  action={props.renderParent}
-                />
+                <PrimaryButton text="Submit" type="Submit" />
                 {error && (
                   <div className="col-12 my-3 bg-danger text-white p-3">
                     {error.message}
