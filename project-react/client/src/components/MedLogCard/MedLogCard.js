@@ -5,7 +5,7 @@ import "../Icons/Icons.css";
 import "./MedLogCard.css";
 
 const MedLogCard = (props) => {
-  const { name, dosage, time } = props;
+  const { logId, name, dosage, time } = props;
 
   // Capitalize every word in medicine name
   const words = name.split(" ");
@@ -24,7 +24,6 @@ const MedLogCard = (props) => {
 
   const handleDeleteLog = async (logId) => {
     try {
-      console.log(typeof logId);
       const { data } = await deleteMedicationLog({
         variables: { logId },
       });
@@ -41,7 +40,7 @@ const MedLogCard = (props) => {
         <p className="medLogDosage">{dosage}</p>
       </div>
       <div className="logRight">
-        <button className="delLogButton" onClick={() => handleDeleteLog(props.logId)}>
+        <button className="delLogButton" onClick={() => handleDeleteLog(logId)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="1em"

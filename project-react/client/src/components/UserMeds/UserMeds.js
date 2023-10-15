@@ -3,32 +3,23 @@ import "./UserMeds.css";
 
 const UserMeds = (props) => {
   const userMeds = props.medications;
+  // console.log(userMeds);
 
   return (
-    <>
-      <div className="medContainer">
-        <div className="medCard">
-          <p className="medName">Prednisone</p>
-          <p className="medDose">60 mg</p>
-          <SmallButton text={"Take Med"} />
+    <div className="medContainer">
+      {userMeds.length ? (
+        <div className="flex-row">
+          {userMeds.map((med, index) => (
+            <div key={med.name + index} className="medCard">
+              <p className="medName">{med}</p>
+              <SmallButton text={"Take Med"} />
+            </div>
+          ))}
         </div>
-        <div className="medCard">
-          <p className="medName">Prednisone</p>
-          <p className="medDose">60 mg</p>
-          <SmallButton text={"Take Med"} />
-        </div>
-        <div className="medCard">
-          <p className="medName">Prednisone</p>
-          <p className="medDose">60 mg</p>
-          <SmallButton text={"Take Med"} />
-        </div>
-        <div className="medCard">
-          <p className="medName">Prednisone</p>
-          <p className="medDose">60 mg</p>
-          <SmallButton text={"Take Med"} />
-        </div>
-      </div>
-    </>
+      ) : (
+        <h3>No meds added. Add some now!</h3>
+      )}
+    </div>
   );
 };
 

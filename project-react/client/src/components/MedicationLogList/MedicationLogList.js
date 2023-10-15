@@ -35,7 +35,7 @@ const MedicationLogList = (props) => {
         <div className="flex-row">
           {logData.map((log) => (
             <MedLogCard
-              key={log._id + log.datetime}
+              key={log}
               logId={log._id}
               name={log.medicationName}
               dosage={log.dosage}
@@ -44,7 +44,7 @@ const MedicationLogList = (props) => {
           ))}
         </div>
       ) : (
-        <h3>You haven't added any medications yet.</h3>
+        <h3>You haven't logged any medications today.</h3>
       )}
       <PrimaryButton text={"Take Medication"} action={toggleModal} />
       {isShown && (
