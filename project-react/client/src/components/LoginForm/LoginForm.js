@@ -35,6 +35,8 @@ const LoginForm = (props) => {
       console.log("Data after login:", data);
       Auth.login(data.login.token);
 
+      // console.log(context.user)
+
       props.setLoggedIn(!props.isLoggedIn);
     } catch (e) {
       console.error(e);

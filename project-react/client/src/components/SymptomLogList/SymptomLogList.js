@@ -20,6 +20,14 @@ const SymptomLogList = (props) => {
     setIsShown(!isShown);
   };
 
+  const [parentState, setParentState] = useState(0);
+
+  // Define a callback function that will be passed to the child component
+  const renderParent = () => {
+    // Update the parent's state or perform any actions that trigger a re-render
+    setParentState(parentState + 1);
+  };
+
   // Get user's symptoms property (as array)
   const { datetime } = props;
   const { loading, data } = useQuery(QUERY_SYMPTOM_LOGS, {
@@ -52,6 +60,7 @@ const SymptomLogList = (props) => {
       {isShown && (
         <SympLogForm
           closeFunction={toggleModal}
+          renderParent={renderParent}
           // You can pass other props here
         />
       )}

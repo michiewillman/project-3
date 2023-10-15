@@ -1,36 +1,9 @@
 const { AuthenticationError } = require("apollo-server-express");
-// const { GraphQLScalarType, Kind } = require("graphql");
 const { User, MedicationLog, SymptomLog } = require("../models");
 const { signToken } = require("../utils/auth");
 const formatDate = require("../utils/formatDate");
 
 const resolvers = {
-  // Date: new GraphQLScalarType({
-  //   name: "Date",
-  //   description: "Custom Date scalar type",
-  //   parseValue(value) {
-  //     // Convert the incoming date string or timestamp to a JavaScript Date object
-  //     return new Date(value);
-  //   },
-  //   // serialize(value) {
-  //   //   // Convert the JavaScript Date object to a string for output
-  //   //   return value.toISOString();
-  //   // },
-  //   serialize(value) {
-  //     if (value instanceof Date) {
-  //       return value.toISOString();
-  //     }
-  //     return console.log("Date is a ", value.typeof); // Or handle other cases as needed
-  //   },
-  //   parseLiteral(ast) {
-  //     // Parse a date string from the GraphQL query AST
-  //     if (ast.kind === Kind.STRING) {
-  //       return new Date(ast.value);
-  //     }
-  //     return null;
-  //   },
-  // }),
-
   Query: {
     // All Users
     users: async () => {

@@ -12,7 +12,7 @@ const SympLogForm = (props) => {
   const [addSymptomLog, { error }] = useMutation(ADD_SYMPTOM_LOG);
 
   // Update state change with input change
-  const changeState = (event) => {
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
 
     setFormState({
@@ -24,9 +24,17 @@ const SympLogForm = (props) => {
   const handleLogSymptom = async (event) => {
     event.preventDefault();
 
+    const user = Auth.getUser();
+    const severityNum = Number(formState.severity);
+    console.log(severityNum);
+
     try {
       const data = await addSymptomLog({
-        variables: { ...formState },
+        variables: {
+          symptomName: formState.symptomName,
+          severity: severityNum,
+          userId: user.data._id,
+        },
       });
 
       // Clear the form by resetting the state
@@ -46,26 +54,31 @@ const SympLogForm = (props) => {
               <SecondaryButton text="Close" action={props.closeFunction} />
             </div>
             <div className="p-6 space-y-6">
-              <form className="" onSubmit={handleLogSymptom}>
+              <form onSubmit={handleLogSymptom}>
                 <div className="col-12 col-lg-9">
-                  <label for="symptomName">Symptom</label>
+                  <label htmlFor="symptomName">Symptom</label>
                   <input
-                    className="form-input"
+                    className="formInput"
                     name="symptomName"
                     type="text"
+                    placeholder="enter symptom name"
                     value={formState.symptomName}
-                    onChange={(event) => changeState(event)}
+                    onChange={(event) => handleInputChange(event)}
                   />
-                  <label for="severity">Severity</label>
+                  <label htmlFor="severity">Severity</label>
                   <input
-                    className="form-input"
+                    className="formInput"
                     name="severity"
                     type="number"
                     value={formState.severity}
-                    onChange={(event) => changeState(event)}
+                    onChange={(event) => handleInputChange(event)}
                   />
                 </div>
-                <PrimaryButton text="Submit" type="Submit" />
+                <PrimaryButton
+                  text="Submit"
+                  type="Submit"
+                  action={props.renderParent}
+                />
                 {error && (
                   <div className="col-12 my-3 bg-danger text-white p-3">
                     {error.message}
