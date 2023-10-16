@@ -27,10 +27,13 @@ const SymLogCard = (props) => {
   return (
     <div className="card symptomLogCard">
       <div className="logLeft">
-        {" "}
-        <p className="symptomLogName">{displayName}</p>
-        <p className="symptomLogSeverity">Severity: <span className="severityValue">{severity}</span>
-        </p>
+        <div className="severityBadge">
+          <span className="severityTitle">Severity</span>
+          <span className="severityValue">{severity}</span>
+        </div>
+        <div>
+          <p className="symptomLogName">{displayName}</p>
+        </div>
       </div>
       <div className="logRight">
         <button className="delLogButton" onClick={() => handleDeleteLog(logId)}>

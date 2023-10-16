@@ -5,15 +5,8 @@ import { QUERY_MEDICATION_LOGS } from "../../utils/queries";
 import MedLogCard from "../MedLogCard/MedLogCard";
 import Loading from "../Loading/Loading";
 import { PrimaryButton } from "../Button/Button";
-import MedLogForm from "../MedLogForm/MedLogForm";
 
 const MedicationLogList = (props) => {
-  const [isShown, setIsShown] = useState(false);
-
-  const toggleModal = () => {
-    setIsShown(!isShown);
-  };
-
   // Get med logs from user from date passed in
   const { datetime } = props;
   const { loading, data } = useQuery(QUERY_MEDICATION_LOGS, {
@@ -33,6 +26,7 @@ const MedicationLogList = (props) => {
       <h2>Medication</h2>
       {logData.length ? (
         <div className="flex-row">
+          {/* Render a log card for each item in the logs array */}
           {logData.map((log) => (
             <MedLogCard
               key={log._id + log.medicationName}
@@ -46,16 +40,16 @@ const MedicationLogList = (props) => {
       ) : (
         <h3>You haven't logged any medications today.</h3>
       )}
-      <PrimaryButton text={"Take Medication"} action={toggleModal} />
-      {isShown && (
+      {/* <PrimaryButton text={"Take Medication"} action={toggleModal} /> */}
+      {/* {isShown && (
         <MedLogForm
           renderParent={renderParent}
           shown={isShown}
           setIsShown={setIsShown}
-          // can pass other props here
+          toggleModal={toggleModal}
         />
-      )}
-      <Loading loading={loading} />
+      )} */}
+      {/* <Loading loading={loading} /> */}
     </div>
   );
 };

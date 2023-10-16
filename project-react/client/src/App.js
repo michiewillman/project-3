@@ -22,11 +22,10 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import EntryScreen from "./pages/EntryScreen/EntryScreen";
 
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
-
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -57,11 +56,12 @@ function App() {
       {/* <UserProvider> */}
       <Router>
         <div>
-          <Header />
-          <div className="container">
+          <Header />{" "}
+          <div className="mainContainer">
             {Auth.loggedIn() ? (
               <Routes>
                 <Route path="/" element={<Dashboard />} />
+                <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/account" element={<MyAccount />} />
                 {/* <Route path="/login" element={<Logout />} /> */}
                 <Route
@@ -74,6 +74,7 @@ function App() {
             ) : (
               <Routes>
                 <Route path="/" element={<EntryScreen />} />
+                <Route path="/dashboard" element={<LoginForm />} />
                 <Route
                   path="/login"
                   element={
@@ -84,6 +85,7 @@ function App() {
                   }
                 />
                 <Route path="/signup" element={<SignupForm />} />
+                <Route path="/account" element={<LoginForm />} />
                 <Route
                   path="*"
                   element={

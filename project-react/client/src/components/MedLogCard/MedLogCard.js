@@ -1,12 +1,13 @@
 import { useMutation } from "@apollo/client";
 import { DELETE_MEDICATION_LOG } from "../../utils/mutations";
 import firstToUppercase from "../../utils/firstToUppercase";
+// Styles
 import "../Button/Button.css";
 import "../Icons/Icons.css";
 import "./MedLogCard.css";
-
+// Import icon for delete log button
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-
+ 
 const MedLogCard = (props) => {
   const { logId, name, dosage, time } = props;
 
@@ -37,7 +38,7 @@ const MedLogCard = (props) => {
         <p className="medLogDosage">{dosage}</p>
       </div>
       <div className="logRight">
-        <button>
+        <button className="delLogButton">
           <CloseOutlinedIcon onClick={() => handleDeleteLog(logId)} />
         </button>
       </div>

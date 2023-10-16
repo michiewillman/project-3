@@ -2,8 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+.mainContainer {
   background-color: #e8e9ed;
+  margin: 60px 0 90px 0;
+  padding: 40px 20px 0 20px;
+  min-height: 100vh;
 }
 
 h1,
@@ -28,7 +31,7 @@ a {
 }
 
 .card {
-  background-color: #e8e9ed;
+  background-color: #f2f2f2;
   border-radius: 15px;
   padding: 10px 30px;
   margin: 15px 0;

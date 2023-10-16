@@ -1,10 +1,18 @@
 .navlinks {
   display: flex;
-  flex: flex-wrap;
+  flex: wrap;
+  position: fixed;
+  top: 0;
+  right: 0;
 }
 
 .navitem {
-  /* font-family: "PT Serif", serif; */
-  width: 50px;
-  padding: 10px 20px;
+  color: #dcdcde;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.navitem:hover {
+  background-color: #2e7c8b;
 }

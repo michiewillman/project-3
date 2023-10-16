@@ -1,7 +1,7 @@
-import spinner from "../../assets/Spin-1s-200px.gif";
+import AutoModeOutlinedIcon from "@mui/icons-material/AutoModeOutlined";
 
 function Loading(props) {
-  return <>{props.loading ? <img src={spinner} alt="loading" /> : null}</>;
+  return <AutoModeOutlinedIcon />;
 }
 
 export default Loading;

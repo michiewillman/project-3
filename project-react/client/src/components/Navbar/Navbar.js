@@ -9,19 +9,29 @@ const Navbar = () => {
     Auth.logout();
   };
   return (
-    <div className="navlinks">
-      <div>
-        <div className="sitelogo">MG Metrics</div>
+    <div className="navbar">
+
+      <div className="navlinks">
         {Auth.loggedIn() ? (
           <>
-            <Link to="/">Dashboard</Link>
-            <Link to="/account">My Account</Link>
-            <Link onClick={logout}>Logout</Link>
+            <Link className="navitem" to="/">
+              Dashboard
+            </Link>
+            <Link className="navitem" to="/account">
+              My Account
+            </Link>
+            <Link className="navitem" onClick={logout}>
+              Logout
+            </Link>
           </>
         ) : (
           <>
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Signup</Link>
+            <Link className="navitem" to="/login">
+              Login
+            </Link>
+            <Link className="navitem" to="/signup">
+              Signup
+            </Link>
           </>
         )}
       </div>

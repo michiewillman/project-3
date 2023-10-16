@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_SYMPTOM_LOG } from "../../utils/mutations";
-import { PrimaryButton } from "../Button/Button";
-import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import { PrimaryButton, SecondaryButton } from "../Button/Button";
+// import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import "./SympLogForm.css";
 
 import Auth from "../../utils/auth";
 
 const SympLogForm = (props) => {
-  const [formState, setFormState] = useState({ symptomName: "", severity: 0 });
+  const [formState, setFormState] = useState({ symptomName: "", severity: "" });
 
   const [addSymptomLog, { error }] = useMutation(ADD_SYMPTOM_LOG);
 
@@ -39,7 +39,7 @@ const SympLogForm = (props) => {
       });
 
       // Clear the form by resetting the state
-      setFormState({ symptomName: "", severity: 0 });
+      setFormState({ symptomName: "", severity: "" });
 
       const { renderParent, toggleModal } = props;
       renderParent();
@@ -49,9 +49,9 @@ const SympLogForm = (props) => {
     }
   };
 
-  const toggleModal = () => {
-    props.setIsShown(!props.shown);
-  };
+  // const toggleModal = () => {
+  //   props.setIsShown(!props.shown);
+  // };
 
   return (
     <div className="overlay">
@@ -60,7 +60,6 @@ const SympLogForm = (props) => {
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <div className="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
               <h3>Log a Symptom</h3>
-              <CloseOutlinedIcon onClick={toggleModal} />
             </div>
             <div className="p-6 space-y-6">
               <form onSubmit={handleLogSymptom}>
@@ -79,10 +78,16 @@ const SympLogForm = (props) => {
                     className="formInput"
                     name="severity"
                     type="number"
+                    placeholder="enter a number"
                     value={formState.severity}
                     onChange={(event) => handleInputChange(event)}
                   />
                 </div>
+                <SecondaryButton
+                  text="Cancel"
+                  action={props.toggleModal}
+                  type="button"
+                />
                 <PrimaryButton text="Submit" type="Submit" />
                 {error && (
                   <div className="col-12 my-3 bg-danger text-white p-3">

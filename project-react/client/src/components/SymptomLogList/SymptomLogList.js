@@ -52,10 +52,10 @@ const SymptomLogList = (props) => {
           renderParent={renderParent}
           shown={isShown}
           setIsShown={setIsShown}
-          // can pass other props here
+          toggleModal={toggleModal}
         />
       )}
-      <Loading loading={loading} />
+      {/* <Loading loading={loading} /> */}
     </div>
   );
 };

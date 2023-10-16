@@ -1,7 +1,10 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Footer.css";
 import "../Icons/Icons.css";
+import KeyboardBackspaceOutlinedIcon from "@mui/icons-material/KeyboardBackspaceOutlined";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import DashboardCustomizeOutlinedIcon from "@mui/icons-material/DashboardCustomizeOutlined";
 
 const Footer = () => {
   const location = useLocation();
@@ -10,18 +13,16 @@ const Footer = () => {
     <footer className="w-100 mt-auto text-dark p-4">
       <div className="container text-center mb-5">
         {location.pathname !== "/" && (
-          <button className="btn btn-back mb-3" onClick={() => navigate(-1)}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="1em"
-              viewBox="0 0 448 512"
-              className="icon"
-            >
-              <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
-            </svg>
-          </button>
+          <Link className="footerBtn" onClick={() => navigate(-1)}>
+            <KeyboardBackspaceOutlinedIcon className="icon" />
+          </Link>
         )}
-        <p>&copy; {new Date().getFullYear()} Developed by Michie Willman</p>
+        <Link to="/dashboard" className="footerBtn">
+          <DashboardCustomizeOutlinedIcon className="icon" />
+        </Link>
+        <Link to="/account" className="footerBtn">
+          <AccountCircleOutlinedIcon className="icon" />
+        </Link>
       </div>
     </footer>
   );

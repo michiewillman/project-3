@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_MEDICATION_LOG } from "../../utils/mutations";
-import { PrimaryButton } from "../Button/Button";
-import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import { PrimaryButton, SecondaryButton } from "../Button/Button";
+// import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import "./MedLogForm.css";
 
 import Auth from "../../utils/auth";
@@ -62,7 +62,6 @@ const MedLogForm = (props) => {
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <div className="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
               <h3>Log a Medication</h3>
-              <CloseOutlinedIcon className="closeIcon" onClick={toggleModal} />
             </div>
             <div className="p-6 space-y-6">
               <form onSubmit={handleLogMed}>
@@ -72,7 +71,7 @@ const MedLogForm = (props) => {
                     className="formInput"
                     name="medicationName"
                     type="text"
-                    placeholder="enter symptom name"
+                    placeholder={props.selectedMedication}
                     value={formState.medicationName}
                     onChange={(event) => handleInputChange(event)}
                   />
@@ -81,10 +80,16 @@ const MedLogForm = (props) => {
                     className="formInput"
                     name="dosage"
                     type="text"
+                    placeholder="enter dosage amount"
                     value={formState.dosage}
                     onChange={(event) => handleInputChange(event)}
                   />
                 </div>
+                <SecondaryButton
+                  text="Cancel"
+                  action={props.toggleModal}
+                  type="button"
+                />
                 <PrimaryButton text="Submit" type="Submit" />
                 {error && (
                   <div className="col-12 my-3 bg-danger text-white p-3">

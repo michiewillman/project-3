@@ -20,7 +20,7 @@ const MyAccount = () => {
       <p>First name: {user.firstName}</p>
       <p>Last name: {user.lastName}</p>
       <p>Email: {user.email}</p>
-      <p>Medications: {user.medications}</p>
+      <p>Medications: {user.medications} </p>{" "}
       <p>Reported symptoms: {user.symptoms}</p>
     </div>
   );

@@ -94,14 +94,13 @@ const SignupForm = (props) => {
                   value={formState.password}
                   onChange={handleInputChange}
                 />
-                <Link to="/login">
-                  <PrimaryButton text="Submit" type="Submit" />
-                </Link>
+                <PrimaryButton text="Submit" type="Submit" />
               </form>
             )}
-
             {error && <div className="">{error.message}</div>}
           </div>
+          <p>Not already registered?</p>
+          <Link to="/login">Log in</Link>
         </div>
       </div>
     </main>
