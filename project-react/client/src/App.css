@@ -41,3 +41,11 @@ a {
   align-items: center;
   min-height: 100px;
 }
+
+.flexContainer {
+  justify-content: center;
+  align-items: center;
+}
+.noLogsMessage {
+  margin: 20px 0;
+}
