@@ -5,16 +5,25 @@ import firstToUppercase from "../../utils/firstToUppercase";
 import Grid from "@mui/material/Grid"; // Grid version 1
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import "./UserMeds.css";
+import NewMedForm from "../NewMedForm/NewMedForm";
 
 const UserMeds = (props) => {
   const userMeds = props.medications;
 
-  const [isShown, setIsShown] = useState(false); // Modal for MedLogForm showing or not
-  const [selectedMedication, setSelectedMedication] = useState(""); // Selected medication to render in the form
+  // State control for New Med Form
+  const [medFormShown, setMedForm] = useState(false);
+  // State control for New Medication Log Form
+  const [isShown, setIsShown] = useState(false);
+  // Selected medication to render in the form
+  const [selectedMedication, setSelectedMedication] = useState("");
 
   const toggleModal = (medName) => {
     setSelectedMedication(medName); // Set the selected medication before toggling the modal
     setIsShown(!isShown);
+  };
+
+  const toggleMedForm = () => {
+    setMedForm(!medFormShown);
   };
 
   return (
@@ -38,12 +47,13 @@ const UserMeds = (props) => {
               <AddBoxIcon
                 fontSize="large"
                 className="addIcon"
-                onClick={() => toggleModal("")} // Clear selectedMedication for the "Add Med" button
+                onClick={() => toggleMedForm("")} // Clear selectedMedication for the "Add Med" button
               />
             </Grid>
           </Grid>
         </div>
       </Grid>
+      {/* Modal for creating log when User takes medication */}
       {isShown && (
         <MedLogForm
           // Pass the selected medication as a prop to MedLogForm
@@ -51,6 +61,14 @@ const UserMeds = (props) => {
           shown={isShown}
           setIsShown={setIsShown}
           toggleModal={toggleModal}
+        />
+      )}
+      {/* Modal for adding a medication to User property */}
+      {medFormShown && (
+        <NewMedForm
+          medFormShown={medFormShown}
+          setMedForm={setMedForm}
+          toggleMedForm={toggleMedForm}
         />
       )}
     </>
