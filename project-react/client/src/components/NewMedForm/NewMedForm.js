@@ -23,8 +23,6 @@ const NewMedForm = (props) => {
   const handleAddMed = async (event) => {
     event.preventDefault();
 
-    console.log(formState.medication);
-
     const newMed = firstToUppercase(formState.medication);
 
     // Add medication to the User's medications property (array)
