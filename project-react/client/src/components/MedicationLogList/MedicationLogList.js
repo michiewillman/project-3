@@ -40,15 +40,6 @@ const MedicationLogList = (props) => {
       ) : (
         <h3>You haven't logged any medications today.</h3>
       )}
-      {/* <PrimaryButton text={"Take Medication"} action={toggleModal} /> */}
-      {/* {isShown && (
-        <MedLogForm
-          renderParent={renderParent}
-          shown={isShown}
-          setIsShown={setIsShown}
-          toggleModal={toggleModal}
-        />
-      )} */}
       {/* <Loading loading={loading} /> */}
     </div>
   );
