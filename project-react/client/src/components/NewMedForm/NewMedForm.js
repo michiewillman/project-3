@@ -3,10 +3,11 @@ import { useMutation } from "@apollo/client";
 import { ADD_USER_MEDICATION } from "../../utils/mutations";
 import { PrimaryButton, SecondaryButton } from "../Button/Button";
 import firstToUppercase from "../../utils/firstToUppercase";
-// import Auth from "../../utils/auth";
 
 const NewMedForm = (props) => {
-  const [formState, setFormState] = useState("");
+  const [formState, setFormState] = useState({
+    medication: "",
+  });
 
   const [addUserMedication, { error }] = useMutation(ADD_USER_MEDICATION);
 
@@ -32,7 +33,9 @@ const NewMedForm = (props) => {
       });
 
       // Clear the form by resetting the state
-      setFormState("");
+      setFormState({
+        medication: "",
+      });
 
       // Close modal
       props.toggleMedForm();
