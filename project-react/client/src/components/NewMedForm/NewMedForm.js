@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_USER_MEDICATION } from "../../utils/mutations";
 import { PrimaryButton, SecondaryButton } from "../Button/Button";
-import Auth from "../../utils/auth";
+import firstToUppercase from "../../utils/firstToUppercase";
+// import Auth from "../../utils/auth";
 
 const NewMedForm = (props) => {
   const [formState, setFormState] = useState("");
@@ -22,10 +23,14 @@ const NewMedForm = (props) => {
   const handleAddMed = async (event) => {
     event.preventDefault();
 
+    console.log(formState.medication);
+
+    const newMed = firstToUppercase(formState.medication);
+
     // Add medication to the User's medications property (array)
     try {
       const data = await addUserMedication({
-        variables: formState,
+        variables: { medication: newMed },
       });
 
       // Clear the form by resetting the state
