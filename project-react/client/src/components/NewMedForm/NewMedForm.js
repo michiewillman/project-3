@@ -64,7 +64,7 @@ const NewMedForm = (props) => {
                 </div>
                 <SecondaryButton
                   text="Cancel"
-                  action={props.toggleModal}
+                  action={props.toggleMedForm}
                   type="button"
                 />
                 <PrimaryButton text="Submit" type="Submit" />
