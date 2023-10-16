@@ -22,9 +22,6 @@ const NewMedForm = (props) => {
   const handleAddMed = async (event) => {
     event.preventDefault();
 
-    // Get the userId for our mutation
-    // const user = Auth.getUser();
-
     // Add medication to the User's medications property (array)
     try {
       const data = await addUserMedication({
