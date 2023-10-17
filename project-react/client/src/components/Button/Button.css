@@ -64,3 +64,11 @@
   background-color: #d2d9db;
   border-radius: 5px;
 }
+
+.delBadge {
+  color: #98c3cc;
+}
+
+.delBadge:hover {
+  color: #aedee8;
+}
