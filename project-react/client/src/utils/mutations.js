@@ -67,7 +67,7 @@ export const ADD_USER_MEDICATION = gql`
   }
 `;
 export const REMOVE_USER_MEDICATION = gql`
-  mutation Mutation($medication: String!) {
+  mutation removeUserMedication($medication: String!) {
     removeUserMedication(medication: $medication) {
       medications
     }
